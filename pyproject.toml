@@ -23,6 +23,15 @@ packages = [
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+#addopts = "--cov=papa --tb=short"
+# --cov-report=html
+# --showlocals
+# --setup-show
+# --disable-warnings
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
