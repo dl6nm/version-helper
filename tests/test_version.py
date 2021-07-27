@@ -24,8 +24,6 @@ from version_helper import Version
         ['1.2.3-alpha+4.gf0a9091.dirty', 1, 2, 3, 'alpha', '4.gf0a9091.dirty'],
         ['1.2.3-alpha.1+4.gf0a9091.dirty', 1, 2, 3, 'alpha.1', '4.gf0a9091.dirty'],
         ['1.2.3-alpha.1.dev+4.gf0a9091.dirty', 1, 2, 3, 'alpha.1.dev', '4.gf0a9091.dirty'],
-
-        ['46467a2', None, None, None, None, '46467a2'],
     ],
 )
 def test_version_parser(version_string, major, minor, patch, pre_release, build):
@@ -37,9 +35,37 @@ def test_version_parser(version_string, major, minor, patch, pre_release, build)
     Replace -> ['$&', $2, $3, $4, '$6', '$9'],
     """
     version = Version.parse(version_string)
-
     assert version.major == major
     assert version.minor == minor
     assert version.patch == patch
     assert version.pre_release == pre_release
     assert version.build == build
+
+
+@pytest.mark.parametrize(
+    argnames='version_string',
+    argvalues=[
+        '46467a2',
+        '1.2-beta.1',
+        '1.2.3.1',
+        '1.2.3.beta.1',
+    ],
+)
+def test_version_parser_value_error(version_string):
+    with pytest.raises(ValueError, match='`version_string` is not valid to semantic versioning'):
+        Version.parse(version_string)
+
+
+@pytest.mark.parametrize(
+    argnames=['version', 'major', 'minor', 'patch', 'core'],
+    argvalues=[
+        ['0.1.2+4.gf0a9091.dirty', 0, 1, 2, '0.1.2'],
+        ['1.2.3-alpha.1.dev+4.gf0a9091.dirty', 1, 2, 3, '1.2.3'],
+    ],
+)
+def test_version_core(version, major, minor, patch, core):
+    version = Version.parse(version)
+    assert version.major == major
+    assert version.minor == minor
+    assert version.patch == patch
+    assert version.core() == core

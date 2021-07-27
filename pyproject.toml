@@ -27,7 +27,8 @@ pytest = "^6.2.4"
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-#addopts = "--cov=papa --tb=short"
+addopts = "--tb=short"
+# --cov=version_helper
 # --cov-report=html
 # --showlocals
 # --setup-show
