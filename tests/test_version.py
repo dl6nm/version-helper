@@ -2,6 +2,7 @@ import pytest
 
 from version_helper import Version
 
+
 @pytest.mark.parametrize(
     argnames=['version_string', 'major', 'minor', 'patch', 'pre_release', 'build'],
     argvalues=[
@@ -52,7 +53,7 @@ def test_version_parser(version_string, major, minor, patch, pre_release, build)
     ],
 )
 def test_version_parser_value_error(version_string):
-    with pytest.raises(ValueError, match='`version_string` is not valid to semantic versioning'):
+    with pytest.raises(ValueError, match='`version_string` is not valid to Semantic Versioning Specification'):
         Version.parse(version_string)
 
 

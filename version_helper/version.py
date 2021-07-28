@@ -11,7 +11,7 @@ class Version:
     @staticmethod
     def parse(version_string: str) -> 'Version':
         pattern = r'(\d+)\.(\d+)\.(\d+)(?:\-((?:[\w\d\-]+\.?)+))?(?:\+((?:[\w\d\-]+\.?)+))?'
-        match = re.match(pattern, version_string)
+        match = re.fullmatch(pattern, version_string.strip())
         if match:
             Version.major = int(match.group(1))
             Version.minor = int(match.group(2))
@@ -19,7 +19,7 @@ class Version:
             Version.pre_release = match.group(4)
             Version.build = match.group(5)
         else:
-            raise ValueError('`version_string` is not valid to semantic versioning')
+            raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
 
         return Version()
 
