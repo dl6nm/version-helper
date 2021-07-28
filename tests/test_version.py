@@ -100,3 +100,29 @@ def test_version_from_git(version_string, is_from_git_describe, expected_semver,
     assert version.patch == expected_version.patch
     assert version.prerelease == expected_version.prerelease
     assert version.build == expected_version.build
+
+
+@pytest.mark.parametrize(
+    argnames=['major', 'minor', 'patch', 'prerelease', 'build', 'expected_semver', 'expected_version'],
+    argvalues=[
+        [0, 1, 2, None, None, '0.1.2', Version(0, 1, 2)]
+    ],
+)
+def test_version_set(major, minor, patch, prerelease, build, expected_semver, expected_version):
+    version = Version()
+    version.set(
+        major=major,
+        minor=minor,
+        patch=patch,
+        prerelease=prerelease,
+        build=build,
+    )
+
+    assert str(version) == expected_semver
+    assert version.full == expected_semver
+
+    assert version.major == expected_version.major
+    assert version.minor == expected_version.minor
+    assert version.patch == expected_version.patch
+    assert version.prerelease == expected_version.prerelease
+    assert version.build == expected_version.build
