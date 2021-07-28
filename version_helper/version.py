@@ -13,6 +13,25 @@ class Version:
         self.prerelease: str = prerelease
         self.build: str = build
 
+    def __str__(self):
+        return self.full
+
+    def __repr__(self):
+        return self.full
+
+    @property
+    def full(self) -> str:
+        """
+        Full Semantic Version string including prerelease and build
+
+        :return: Full version string with all it's Semantic Versioning parts
+        """
+        semver = f'{self.major}.{self.minor}.{self.patch}'
+        if self.prerelease:
+            semver += f'-{self.prerelease}'
+        if self.build:
+            semver += f'+{self.build}'
+        return semver
     @staticmethod
     def parse(version_string: str) -> 'Version':
         """
@@ -33,6 +52,14 @@ class Version:
 
         else:
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
+
+    def set(self, major: int, minor: int, patch: int,
+            prerelease: str = None, build: str = None):
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+        self.prerelease = prerelease
+        self.build = build
 
     @property
     def core(self) -> str:
