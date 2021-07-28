@@ -29,11 +29,7 @@ from version_helper import Version
 )
 def test_version_parser(version_string, major, minor, patch, pre_release, build):
     """
-    {major}.{minor}.{patch}[-{pre-release}][+{build}]
-        >> {major}: int, {minor}: int, {patch}: int, {pre-release}: str, {build}: : str
-
-    RegExpr -> ((\d+)\.(\d+)\.(\d+))(\-(([\w\d]+\.?)*))?(\+(([\w\d]+\.?)*))?
-    Replace -> ['$&', $2, $3, $4, '$6', '$9'],
+    {major: int}.{minor: int}.{patch: int}[-{pre-release: str}][+{build: str}]
     """
     version = Version.parse(version_string)
     assert version.major == major
@@ -49,7 +45,11 @@ def test_version_parser(version_string, major, minor, patch, pre_release, build)
         '46467a2',
         '1.2-beta.1',
         '1.2.3.1',
+        '1.2.3.4.5',
+        '1.2.3.4-alpha.1',
         '1.2.3.beta.1',
+        'this.is.a.new.version',
+        'my-version',
     ],
 )
 def test_version_parser_value_error(version_string):
@@ -58,15 +58,12 @@ def test_version_parser_value_error(version_string):
 
 
 @pytest.mark.parametrize(
-    argnames=['version', 'major', 'minor', 'patch', 'core'],
+    argnames=['major', 'minor', 'patch', 'core'],
     argvalues=[
-        ['0.1.2+4.gf0a9091.dirty', 0, 1, 2, '0.1.2'],
-        ['1.2.3-alpha.1.dev+4.gf0a9091.dirty', 1, 2, 3, '1.2.3'],
+        [0, 1, 2, '0.1.2'],
+        [1, 2, 3, '1.2.3'],
     ],
 )
-def test_version_core(version, major, minor, patch, core):
-    version = Version.parse(version)
-    assert version.major == major
-    assert version.minor == minor
-    assert version.patch == patch
-    assert version.core() == core
+def test_version_core(major, minor, patch, core):
+    version = Version(major=major, minor=minor, patch=patch)
+    assert version.core == core
