@@ -5,7 +5,7 @@ SEMVER_PATTERN = r'(\d+)\.(\d+)\.(\d+)(?:\-((?:[\w\d\-]+\.?)+))?(?:\+((?:[\w\d\-
 
 
 class Version:
-    def __init__(self, major: int = None, minor: int = None, patch: int = None,
+    def __init__(self, major: int, minor: int, patch: int,
                  prerelease: str = None, build: str = None):
         self.major: int = major
         self.minor: int = minor
