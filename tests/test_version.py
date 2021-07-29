@@ -81,7 +81,7 @@ def test_version_core(major, minor, patch, core):
         ],
         [
             '1.2.3-beta.4-3-gf0a9091', True, '1.2.3-beta.4+3-gf0a9091',
-            Version(major=0, minor=1, patch=2, prerelease='beta.4', meta='3-gf0a9091')
+            Version(major=1, minor=2, patch=3, prerelease='beta.4', meta='3-gf0a9091')
         ],
         [
             '0.1.2-alpha.0+3-gf0a9091-dirty', False, '0.1.2-alpha.0+3-gf0a9091-dirty',
