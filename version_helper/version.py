@@ -1,7 +1,8 @@
 import re
 
 
-SEMVER_PATTERN = r'(\d+)\.(\d+)\.(\d+)(?:\-((?:[\w\d\-]+\.?)+))?(?:\+((?:[\w\d\-]+\.?)+))?'
+SEMVER_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>[\w\d\.-]+))?(?:\+(?P<meta>[\w\d\.-]+))?)?$'
+GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>(?:[\w\d\-]+\.?)+)(?=\-(?:\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?)$))?(?:\-(?P<meta>\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?))?$'
 
 
 class Version:
@@ -35,23 +36,30 @@ class Version:
         return semver
 
     @staticmethod
-    def parse(version_string: str) -> 'Version':
+    def parse(string: str, is_from_git_describe: bool = False) -> 'Version':
         """
         Parse a version string into it's individual Semantic Versioning parts
 
-        :param version_string: A Semantic Versioning string
+        :param string: A Semantic Versioning string
+        :param is_from_git_describe: Wether or not the version string is from `git describe`
         :return: A `Version` class object
         """
-        match = re.fullmatch(SEMVER_PATTERN, version_string.strip())
-        if match:
-            return Version(
-                major=int(match.group(1)),
-                minor=int(match.group(2)),
-                patch=int(match.group(3)),
-                prerelease=match.group(4),
-                build=match.group(5),
-            )
+        pattern = SEMVER_PATTERN
+        if is_from_git_describe:
+            pattern = GIT_DESCRIBE_PATTERN
 
+        match = re.fullmatch(pattern, string.strip())
+
+        if match:
+            match_dict = match.groupdict()
+
+            return Version(
+                major=int(match_dict.get('major')),
+                minor=int(match_dict.get('minor')),
+                patch=int(match_dict.get('patch')),
+                prerelease=match_dict.get('prerelease'),
+                meta=match_dict.get('meta'),
+            )
         else:
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
 
