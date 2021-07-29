@@ -4,7 +4,7 @@ from version_helper import Version
 
 
 @pytest.mark.parametrize(
-    argnames=['version_string', 'major', 'minor', 'patch', 'prerelease', 'build'],
+    argnames=['version_string', 'major', 'minor', 'patch', 'prerelease', 'meta'],
     argvalues=[
         ['0.1.2', 0, 1, 2, None, None],
         ['1.2.3', 1, 2, 3, None, None],
@@ -27,16 +27,16 @@ from version_helper import Version
         ['1.2.3-alpha.1.dev+4.gf0a9091.dirty', 1, 2, 3, 'alpha.1.dev', '4.gf0a9091.dirty'],
     ],
 )
-def test_version_parser(version_string, major, minor, patch, prerelease, build):
+def test_version_parser(version_string, major, minor, patch, prerelease, meta):
     """
-    {major: int}.{minor: int}.{patch: int}[-{prerelease: str}][+{build: str}]
+    {major: int}.{minor: int}.{patch: int}[-{prerelease: str}][+{meta: str}]
     """
     version = Version.parse(version_string)
     assert version.major == major
     assert version.minor == minor
     assert version.patch == patch
     assert version.prerelease == prerelease
-    assert version.build == build
+    assert version.meta == meta
 
 
 @pytest.mark.parametrize(
@@ -77,15 +77,15 @@ def test_version_core(major, minor, patch, core):
     argvalues=[
         [
             '0.1.2-alpha.0-3-gf0a9091-dirty', True, '0.1.2-alpha.0+3-gf0a9091-dirty',
-            Version(major=0, minor=1, patch=2, prerelease='alpha.0', build='3-gf0a9091-dirty')
+            Version(major=0, minor=1, patch=2, prerelease='alpha.0', meta='3-gf0a9091-dirty')
         ],
         [
             '1.2.3-beta.4-3-gf0a9091', True, '1.2.3-beta.4+3-gf0a9091',
-            Version(major=0, minor=1, patch=2, prerelease='beta.4', build='3-gf0a9091')
+            Version(major=0, minor=1, patch=2, prerelease='beta.4', meta='3-gf0a9091')
         ],
         [
             '0.1.2-alpha.0+3-gf0a9091-dirty', False, '0.1.2-alpha.0+3-gf0a9091-dirty',
-            Version(major=0, minor=1, patch=2, prerelease='alpha.0', build='3-gf0a9091-dirty')
+            Version(major=0, minor=1, patch=2, prerelease='alpha.0', meta='3-gf0a9091-dirty')
         ],
     ],
 )
@@ -99,23 +99,27 @@ def test_version_from_git(version_string, is_from_git_describe, expected_semver,
     assert version.minor == expected_version.minor
     assert version.patch == expected_version.patch
     assert version.prerelease == expected_version.prerelease
-    assert version.build == expected_version.build
+    assert version.meta == expected_version.meta
 
 
 @pytest.mark.parametrize(
-    argnames=['major', 'minor', 'patch', 'prerelease', 'build', 'expected_semver', 'expected_version'],
+    argnames=['major', 'minor', 'patch', 'prerelease', 'meta', 'expected_semver', 'expected_version'],
     argvalues=[
         [0, 1, 2, None, None, '0.1.2', Version(0, 1, 2)]
     ],
 )
-def test_version_set(major, minor, patch, prerelease, build, expected_semver, expected_version):
-    version = Version()
+def test_version_set(major, minor, patch, prerelease, meta, expected_semver, expected_version):
+    version = Version(
+        major=major,
+        minor=minor,
+        patch=patch,
+    )
     version.set(
         major=major,
         minor=minor,
         patch=patch,
         prerelease=prerelease,
-        build=build,
+        meta=meta,
     )
 
     assert str(version) == expected_semver
@@ -125,4 +129,4 @@ def test_version_set(major, minor, patch, prerelease, build, expected_semver, ex
     assert version.minor == expected_version.minor
     assert version.patch == expected_version.patch
     assert version.prerelease == expected_version.prerelease
-    assert version.build == expected_version.build
+    assert version.meta == expected_version.meta
