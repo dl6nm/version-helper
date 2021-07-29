@@ -6,12 +6,13 @@ SEMVER_PATTERN = r'(\d+)\.(\d+)\.(\d+)(?:\-((?:[\w\d\-]+\.?)+))?(?:\+((?:[\w\d\-
 
 class Version:
     def __init__(self, major: int, minor: int, patch: int,
-                 prerelease: str = None, build: str = None):
+                 prerelease: str = None, meta: str = None):
         self.major: int = major
         self.minor: int = minor
         self.patch: int = patch
         self.prerelease: str = prerelease
-        self.build: str = build
+        self.meta: str = meta
+        self._build: str = meta
 
     def __str__(self):
         return self.full
@@ -22,16 +23,17 @@ class Version:
     @property
     def full(self) -> str:
         """
-        Full Semantic Version string including prerelease and build
+        Full Semantic Version string including prerelease and build metadata
 
         :return: Full version string with all it's Semantic Versioning parts
         """
         semver = f'{self.major}.{self.minor}.{self.patch}'
         if self.prerelease:
             semver += f'-{self.prerelease}'
-        if self.build:
-            semver += f'+{self.build}'
+        if self.meta:
+            semver += f'+{self.meta}'
         return semver
+
     @staticmethod
     def parse(version_string: str) -> 'Version':
         """
@@ -54,12 +56,13 @@ class Version:
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
 
     def set(self, major: int, minor: int, patch: int,
-            prerelease: str = None, build: str = None):
+            prerelease: str = None, meta: str = None):
         self.major = major
         self.minor = minor
         self.patch = patch
         self.prerelease = prerelease
-        self.build = build
+        self.meta = meta
+        self._build = meta
 
     @property
     def core(self) -> str:
