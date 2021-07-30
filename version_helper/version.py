@@ -6,9 +6,23 @@ GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)
 
 
 class Version:
+    """
+    Semantic Versioning compatible class for parsing and emitting SemVer strings into a `Version` object
+
+    More details on Semantic Versioning can be found at https://semver.org/
+    """
 
     def __init__(self, major: int, minor: int, patch: int,
                  prerelease: str = None, meta: str = None):
+        """
+        Create a `Version` object with the given attributes
+
+        :param major: MAJOR version when you make incompatible API changes
+        :param minor: MINOR version when you add functionality in a backwards compatible manner
+        :param patch: PATCH version when you make backwards compatible bug fixes
+        :param prerelease: Pre-release version string like `alpha.0` or `beta.3`
+        :param meta: Build metadata
+        """
         self.major: int = major
         self.minor: int = minor
         self.patch: int = patch
@@ -52,6 +66,15 @@ class Version:
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, meta: str = None):
+        """
+        Set `Version` attributes
+
+        :param major: MAJOR version when you make incompatible API changes
+        :param minor: MINOR version when you add functionality in a backwards compatible manner
+        :param patch: PATCH version when you make backwards compatible bug fixes
+        :param prerelease: Pre-release version string like `alpha.0` or `beta.3`
+        :param meta: Build metadata
+        """
         self.major = major
         self.minor = minor
         self.patch = patch
@@ -61,6 +84,11 @@ class Version:
 
     @property
     def core(self) -> str:
+        """
+        Core version string including major, minor and patch
+
+        :return: Core version string
+        """
         return f'{self.major}.{self.minor}.{self.patch}'
 
     @property
