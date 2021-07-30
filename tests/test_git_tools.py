@@ -10,10 +10,18 @@ def test_is_git_available():
     pass
 
 
-def test_is_git_repository():
+def test_git_describe_fatal_error(mock_git_describe_fatal_error):
     """
-    Check for existence of a .git directory in your projects root
+    Check if git describe returns a fatal error on stderr
     """
+    proc = mock_git_describe_fatal_error
+
+    # Git.describe() is expected to raise an error
+
+    assert proc.args == ['git', 'describe']
+    assert proc.returncode == 128
+    assert proc.stdout.decode().strip() == ''
+    assert proc.stderr.decode().strip() == 'fatal: not a git repository (or any of the parent directories): .git'
 
 
 @pytest.fixture(
