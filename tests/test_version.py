@@ -109,7 +109,11 @@ def test_version_from_git(version_string, is_from_git_describe, expected_semver,
     ],
 )
 def test_version_set(major, minor, patch, prerelease, build, expected_semver, expected_version):
-    version = Version()
+    version = Version(
+        major=major,
+        minor=minor,
+        patch=patch,
+    )
     version.set(
         major=major,
         minor=minor,
