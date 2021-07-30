@@ -6,6 +6,7 @@ GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)
 
 
 class Version:
+
     def __init__(self, major: int, minor: int, patch: int,
                  prerelease: str = None, meta: str = None):
         self.major: int = major
@@ -15,25 +16,11 @@ class Version:
         self.meta: str = meta
         self._build: str = meta
 
-    def __str__(self):
-        return self.full
-
     def __repr__(self):
         return self.full
 
-    @property
-    def full(self) -> str:
-        """
-        Full Semantic Version string including prerelease and build metadata
-
-        :return: Full version string with all it's Semantic Versioning parts
-        """
-        semver = f'{self.major}.{self.minor}.{self.patch}'
-        if self.prerelease:
-            semver += f'-{self.prerelease}'
-        if self.meta:
-            semver += f'+{self.meta}'
-        return semver
+    def __str__(self):
+        return self.full
 
     @staticmethod
     def parse(string: str, is_from_git_describe: bool = False) -> 'Version':
@@ -75,3 +62,17 @@ class Version:
     @property
     def core(self) -> str:
         return f'{self.major}.{self.minor}.{self.patch}'
+
+    @property
+    def full(self) -> str:
+        """
+        Full Semantic Version string including prerelease and build metadata
+
+        :return: Full version string with all it's Semantic Versioning parts
+        """
+        semver = f'{self.major}.{self.minor}.{self.patch}'
+        if self.prerelease:
+            semver += f'-{self.prerelease}'
+        if self.meta:
+            semver += f'+{self.meta}'
+        return semver
