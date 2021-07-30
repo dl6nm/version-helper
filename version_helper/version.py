@@ -1,8 +1,8 @@
 import re
 
 
-SEMVER_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>[\w\d\.-]+))?(?:\+(?P<meta>[\w\d\.-]+))?)?$'
-GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>(?:[\w\d\-]+\.?)+)(?=\-(?:\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?)$))?(?:\-(?P<meta>\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?))?$'
+SEMVER_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>[\w\d\.-]+))?(?:\+(?P<build>[\w\d\.-]+))?)?$'
+GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>(?:[\w\d\-]+\.?)+)(?=\-(?:\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?)$))?(?:\-(?P<build>\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?))?$'
 
 
 class Version:
@@ -13,7 +13,7 @@ class Version:
     """
 
     def __init__(self, major: int, minor: int, patch: int,
-                 prerelease: str = None, meta: str = None):
+                 prerelease: str = None, build: str = None):
         """
         Create a `Version` object with the given attributes
 
@@ -21,14 +21,15 @@ class Version:
         :param minor: MINOR version when you add functionality in a backwards compatible manner
         :param patch: PATCH version when you make backwards compatible bug fixes
         :param prerelease: Pre-release version string like `alpha.0` or `beta.3`
-        :param meta: Build metadata
+        :param build: Build metadata
         """
         self.major: int = major
         self.minor: int = minor
         self.patch: int = patch
         self.prerelease: str = prerelease
-        self.meta: str = meta
-        self._build: str = meta
+        self.build: str = build
+        self._meta: str = build
+
 
     def __repr__(self):
         return self.full
@@ -59,13 +60,13 @@ class Version:
                 minor=int(match_dict.get('minor')),
                 patch=int(match_dict.get('patch')),
                 prerelease=match_dict.get('prerelease'),
-                meta=match_dict.get('meta'),
+                build=match_dict.get('build'),
             )
         else:
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
 
     def set(self, major: int, minor: int, patch: int,
-            prerelease: str = None, meta: str = None):
+            prerelease: str = None, build: str = None):
         """
         Set `Version` attributes
 
@@ -73,14 +74,15 @@ class Version:
         :param minor: MINOR version when you add functionality in a backwards compatible manner
         :param patch: PATCH version when you make backwards compatible bug fixes
         :param prerelease: Pre-release version string like `alpha.0` or `beta.3`
-        :param meta: Build metadata
+        :param build: Build metadata
         """
         self.major = major
         self.minor = minor
         self.patch = patch
         self.prerelease = prerelease
-        self.meta = meta
-        self._build = meta
+        self.build = build
+        self._meta = build
+
 
     @property
     def core(self) -> str:
@@ -101,6 +103,6 @@ class Version:
         semver = f'{self.major}.{self.minor}.{self.patch}'
         if self.prerelease:
             semver += f'-{self.prerelease}'
-        if self.meta:
-            semver += f'+{self.meta}'
+        if self.build:
+            semver += f'+{self.build}'
         return semver
