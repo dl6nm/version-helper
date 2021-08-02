@@ -30,7 +30,6 @@ class Version:
         self.build: str = build
         self._meta: str = build
 
-
     def __repr__(self):
         return self.full
 
@@ -82,7 +81,6 @@ class Version:
         self.prerelease = prerelease
         self.build = build
         self._meta = build
-
 
     @property
     def core(self) -> str:
