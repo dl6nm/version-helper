@@ -10,11 +10,12 @@ def test_is_git_available():
     pass
 
 
-def test_git_describe_fatal_error(mock_git_describe_fatal_error):
+@pytest.mark.skip(reason='Not implemented yet')
+def test_git_describe_fatal_error(git_describe_fatal_error):
     """
     Check if git describe returns a fatal error on stderr
     """
-    proc = mock_git_describe_fatal_error
+    proc = git_describe_fatal_error
 
     # Git.describe() is expected to raise an error
 
