@@ -3,6 +3,11 @@ import pytest
 from version_helper import Version
 
 
+def test_construction():
+    assert Version(1, 2, 3)
+    assert Version(1, 2, 3, 'beta', 'a1b2c3d4')
+
+
 @pytest.mark.parametrize(
     argnames=['version_string', 'major', 'minor', 'patch', 'prerelease', 'build'],
     argvalues=[
