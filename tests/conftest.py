@@ -1,8 +1,9 @@
 import pytest
 
 
-@pytest.fixture()
-def mock_git_describe_fatal_error():
+
+@pytest.fixture
+def git_describe_fatal_error():
     """
     Mock a fatal error produced by git describe, if the .git directory is missing in repository
 
