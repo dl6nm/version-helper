@@ -6,6 +6,7 @@ from version_helper import Git
 
 
 def test_construction():
+    """Test the Git() constructor"""
     assert Git()
 
 
@@ -52,7 +53,7 @@ def test_construction():
     indirect=['mock_git_call_process'],
     ids=['installed on win [str]', 'installed on win [bytes]', 'installed on linux', 'not installed']
 )
-def test_is_git_installed(monkeypatch, mock_git_call_process, expected):
+def test_is_git_installed(monkeypatch, mock_subprocess, expected):
     """Test (mock) if git is installed on the system"""
     assert Git.exec_path() == expected
 
