@@ -1,6 +1,5 @@
 import pytest
 
-from pathlib import Path
 from subprocess import CompletedProcess
 
 from version_helper import Git
