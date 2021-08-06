@@ -28,10 +28,13 @@ pytest = "^6.2.4"
 [tool.pytest.ini_options]
 testpaths = "tests"
 addopts = "--tb=short"
+# --tb=short
+# --full-trace
 # --cov=version_helper
 # --cov-report=html
 # --showlocals
 # --setup-show
+# --setup-plan
 # --disable-warnings
 
 [build-system]
