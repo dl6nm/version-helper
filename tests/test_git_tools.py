@@ -1,5 +1,3 @@
-import pytest
-
 from subprocess import CompletedProcess
 
 from version_helper import Git
