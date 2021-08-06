@@ -10,10 +10,10 @@ def test_construction():
     assert Git()
 
 
-def test_call_process(mock_subprocess, subprocess_parameters):
+def test_call_process(mock_subprocess, subprocess_exec_path_parameters):
     """Test for calling a process from the Git class"""
     proc = Git._call_process()
-    expexted_process: CompletedProcess = subprocess_parameters.get('process')
+    expexted_process: CompletedProcess = subprocess_exec_path_parameters.get('process')
 
     assert proc.args == expexted_process.args
     assert proc.returncode == expexted_process.returncode
@@ -21,9 +21,9 @@ def test_call_process(mock_subprocess, subprocess_parameters):
     assert proc.stderr == expexted_process.stderr
 
 
-def test_git_exec_path(mock_subprocess, subprocess_parameters):
+def test_git_exec_path(mock_subprocess, subprocess_exec_path_parameters):
     """Test (mock) if git is installed on the system by calling --exec-path"""
-    assert Git.exec_path() == subprocess_parameters.get('exec_path')
+    assert Git.exec_path() == subprocess_exec_path_parameters.get('exec_path')
 
 
 @pytest.mark.skip(reason='Not implemented yet')
