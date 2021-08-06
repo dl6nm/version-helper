@@ -1,6 +1,7 @@
 import pytest
 
 from pathlib import Path
+from subprocess import CompletedProcess
 
 from version_helper import Git
 
@@ -14,39 +15,39 @@ def test_construction():
     argnames=['mock_subprocess', 'expected'],
     argvalues=[
         [
-            {
-                'args': ['git', '--exec-path'],
-                'returncode': 0,
-                'stdout': 'C:\Program Files\Git',
-                'stderr': '',
-            },
-            Path('C:\Program Files\Git'),
+            CompletedProcess(
+                args=['git', '--exec-path'],
+                returncode=0,
+                stdout=r'C:\Program Files\Git',
+                stderr='',
+            ),
+            Path(r'C:\Program Files\Git'),
         ],
         [
-            {
-                'args': ['git', '--exec-path'],
-                'returncode': 0,
-                'stdout': b'C:\Program Files\Git',
-                'stderr': b'',
-            },
-            Path('C:\Program Files\Git'),
+            CompletedProcess(
+                args=['git', '--exec-path'],
+                returncode=0,
+                stdout=br'C:\Program Files\Git',
+                stderr=br'',
+            ),
+            Path(r'C:\Program Files\Git'),
         ],
         [
-            {
-                'args': ['git', '--exec-path'],
-                'returncode': 0,
-                'stdout': b'/usr/bin/git',
-                'stderr': b'',
-            },
+            CompletedProcess(
+                args=['git', '--exec-path'],
+                returncode=0,
+                stdout=b'/usr/bin/git',
+                stderr=b'',
+            ),
             Path('/usr/bin/git'),
         ],
         [
-            {
-                'args': ['git', '--exec-path'],
-                'returncode': 127,
-                'stdout': b'',
-                'stderr': b'Der Befehl "git" ist entweder falsch geschrieben oder\nkonnte nicht gefunden werden.\n',
-            },
+            CompletedProcess(
+                args=['git', '--exec-path'],
+                returncode=127,
+                stdout=b'',
+                stderr=b'Der Befehl "git" ist entweder falsch geschrieben oder\nkonnte nicht gefunden werden.\n',
+            ),
             None,
         ],
     ],
@@ -59,10 +60,13 @@ def test_is_git_installed(mock_subprocess, expected):
 
 
 @pytest.mark.skip(reason='Not implemented yet')
+@pytest.mark.parametrize(
+    argnames=[],
+    argvalues=[],
+    ids=[],
+)
 def test_git_describe_fatal_error(git_describe_fatal_error):
-    """
-    Check if git describe returns a fatal error on stderr
-    """
+    """Check if git describe returns a fatal error on stderr"""
     proc = git_describe_fatal_error
 
     # Git.describe() is expected to raise an error
