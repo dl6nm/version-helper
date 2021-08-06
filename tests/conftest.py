@@ -6,6 +6,15 @@ from subprocess import CompletedProcess
 from version_helper import Git
 
 
+@pytest.fixture(scope='function')
+def mock_subprocess(monkeypatch, subprocess_parameters) -> CompletedProcess:
+    """Mock a command line call (subprocess)"""
+    def fake_subprocess(*args, **kwargs):
+        return subprocess_parameters.get("process")
+    monkeypatch.setattr(Git, '_call_process', fake_subprocess)
+    return Git._call_process()
+
+
 @pytest.fixture(
     params=[
         {
@@ -50,12 +59,3 @@ from version_helper import Git
 def subprocess_parameters(request):
     """Fixture for returning subprocess parameters"""
     return request.param
-
-
-@pytest.fixture(scope='function')
-def mock_subprocess(monkeypatch, subprocess_parameters) -> CompletedProcess:
-    """Mock a command line call (subprocess)"""
-    def fake_subprocess(*args, **kwargs):
-        return subprocess_parameters.get("process")
-    monkeypatch.setattr(Git, '_call_process', fake_subprocess)
-    return Git._call_process()
