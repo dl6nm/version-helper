@@ -53,7 +53,7 @@ def test_construction():
     indirect=['mock_subprocess'],
     ids=['installed on win [str]', 'installed on win [bytes]', 'installed on linux', 'not installed']
 )
-def test_is_git_installed(monkeypatch, mock_subprocess, expected):
+def test_is_git_installed(mock_subprocess, expected):
     """Test (mock) if git is installed on the system"""
     assert Git.exec_path() == expected
 
