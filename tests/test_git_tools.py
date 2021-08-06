@@ -11,52 +11,20 @@ def test_construction():
     assert Git()
 
 
-@pytest.mark.parametrize(
-    argnames=['mock_subprocess', 'expected'],
-    argvalues=[
-        [
-            CompletedProcess(
-                args=['git', '--exec-path'],
-                returncode=0,
-                stdout=r'C:\Program Files\Git',
-                stderr='',
-            ),
-            Path(r'C:\Program Files\Git'),
-        ],
-        [
-            CompletedProcess(
-                args=['git', '--exec-path'],
-                returncode=0,
-                stdout=br'C:\Program Files\Git',
-                stderr=br'',
-            ),
-            Path(r'C:\Program Files\Git'),
-        ],
-        [
-            CompletedProcess(
-                args=['git', '--exec-path'],
-                returncode=0,
-                stdout=b'/usr/bin/git',
-                stderr=b'',
-            ),
-            Path('/usr/bin/git'),
-        ],
-        [
-            CompletedProcess(
-                args=['git', '--exec-path'],
-                returncode=127,
-                stdout=b'',
-                stderr=b'Der Befehl "git" ist entweder falsch geschrieben oder\nkonnte nicht gefunden werden.\n',
-            ),
-            None,
-        ],
-    ],
-    indirect=['mock_subprocess'],
-    ids=['installed on win [str]', 'installed on win [bytes]', 'installed on linux', 'not installed']
-)
-def test_is_git_installed(mock_subprocess, expected):
-    """Test (mock) if git is installed on the system"""
-    assert Git.exec_path() == expected
+def test_call_process(mock_subprocess, subprocess_parameters):
+    """Test for calling a process from the Git class"""
+    proc = Git._call_process()
+    expexted_process: CompletedProcess = subprocess_parameters.get('process')
+
+    assert proc.args == expexted_process.args
+    assert proc.returncode == expexted_process.returncode
+    assert proc.stdout == expexted_process.stdout
+    assert proc.stderr == expexted_process.stderr
+
+
+def test_git_exec_path(mock_subprocess, subprocess_parameters):
+    """Test (mock) if git is installed on the system by calling --exec-path"""
+    assert Git.exec_path() == subprocess_parameters.get('exec_path')
 
 
 @pytest.mark.skip(reason='Not implemented yet')
