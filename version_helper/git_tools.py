@@ -4,6 +4,9 @@ from pathlib import Path
 
 
 class Git:
+    """Adding some base git functionality, if available on your system,
+    to get a version string from git describe to use in version_helper later on.
+    """
 
     @staticmethod
     def _call_process(*args, **kwargs) -> subprocess.CompletedProcess:
