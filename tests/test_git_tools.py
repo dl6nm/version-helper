@@ -16,6 +16,15 @@ def test_construction():
             {
                 'args': ['git', '--exec-path'],
                 'returncode': 0,
+                'stdout': 'C:\Program Files\Git',
+                'stderr': '',
+            },
+            Path('C:\Program Files\Git'),
+        ],
+        [
+            {
+                'args': ['git', '--exec-path'],
+                'returncode': 0,
                 'stdout': b'C:\Program Files\Git',
                 'stderr': b'',
             },
@@ -41,7 +50,7 @@ def test_construction():
         ],
     ],
     indirect=['mock_git_call_process'],
-    ids=['installed on win', 'installed on linux', 'not installed']
+    ids=['installed on win [str]', 'installed on win [bytes]', 'installed on linux', 'not installed']
 )
 def test_is_git_installed(monkeypatch, mock_git_call_process, expected):
     """Test (mock) if git is installed on the system"""
