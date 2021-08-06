@@ -1,19 +1,27 @@
 import subprocess
 
+from pathlib import Path
+
 
 class Git:
 
     @staticmethod
     def _call_process(*args, **kwargs) -> subprocess.CompletedProcess:
-        print('_call_process')
         return subprocess.run(*args, **kwargs, capture_output=True)
 
     @staticmethod
-    def exec_path() -> str:
-        """Get the installation path of git or None if not found"""
+    def exec_path() -> Path:
+        """Get the installation path of git or None if it was not found
+
+        :return: Path object to the git executable or None
+        """
         args = ['git', '--exec-path']
         proc = Git._call_process(args)
-        return proc.stdout.strip().decode('utf-8')
+        if proc.returncode == 0:
+            path_str = proc.stdout.strip()
+            if type(path_str) is bytes:
+                path_str = path_str.decode('utf-8')
+            return Path(path_str)
 
     @staticmethod
     def get_version():
