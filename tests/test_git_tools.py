@@ -11,7 +11,7 @@ def test_construction():
 
 
 @pytest.mark.parametrize(
-    argnames=['mock_git_call_process', 'expected'],
+    argnames=['mock_subprocess', 'expected'],
     argvalues=[
         [
             {
@@ -50,7 +50,7 @@ def test_construction():
             None,
         ],
     ],
-    indirect=['mock_git_call_process'],
+    indirect=['mock_subprocess'],
     ids=['installed on win [str]', 'installed on win [bytes]', 'installed on linux', 'not installed']
 )
 def test_is_git_installed(monkeypatch, mock_subprocess, expected):
