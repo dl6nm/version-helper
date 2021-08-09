@@ -27,16 +27,22 @@ class Git:
             return Path(path_str)
 
     @classmethod
-    def describe(cls) -> str or None:
+    def describe(cls, dirty=False, always=False) -> str or None:
         if cls.exec_path() is None:
             return None
+
         args = ['git', 'describe']
+        if dirty:
+            args.append('--dirty')
+        if always:
+            args.append('--always')
+
         proc = cls._call_process(args)
         if proc.returncode == 0:
-            path_str = proc.stdout.strip()
-            if type(path_str) is bytes:
-                path_str = path_str.decode('utf-8')
-            return path_str
+            description = proc.stdout.strip()
+            if type(description) is bytes:
+                description = description.decode('utf-8')
+            return description
 
     @staticmethod
     def get_version():
