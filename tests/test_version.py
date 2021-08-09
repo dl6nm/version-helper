@@ -148,11 +148,9 @@ def test_get_version_from_git_describe(git_describe_parameters):
         with pytest.raises(ValueError, match='`version_string` is not valid to Semantic Versioning Specification'):
             Version.get_from_git_describe(
                 dirty=args.get('dirty'),
-                always=args.get('always'),
             )
     else:
         version = Version.get_from_git_describe(
             dirty=args.get('dirty'),
-            always=args.get('always'),
         )
         assert expected_version.full == version.full

@@ -64,13 +64,13 @@ class Version:
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
 
     @classmethod
-    def get_from_git_describe(cls, dirty=False, always=False) -> 'Version':
-        description = Git.describe(dirty=dirty, always=always)
+    def get_from_git_describe(cls, dirty=False) -> 'Version':
         """Get a semantic version from git describe
 
         :param dirty: Append '-dirty' to the build context, if the working tree has local modifications
         :return: A `Version` class object
         """
+        description = Git.describe(dirty=dirty)
         return cls.parse(description, True)
 
     def set(self, major: int, minor: int, patch: int,
