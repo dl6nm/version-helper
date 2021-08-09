@@ -7,6 +7,7 @@ def test_construction():
     """Test the Version() constructor"""
     assert Version(1, 2, 3)
     assert Version(1, 2, 3, 'beta', 'a1b2c3d4')
+    assert Version(1, 2, 3, None, 'build-246')
 
 
 @pytest.mark.parametrize(
@@ -72,15 +73,18 @@ def test_version_parser_value_error(version_string):
 
 
 @pytest.mark.parametrize(
-    argnames=['major', 'minor', 'patch', 'core'],
+    argnames=['major', 'minor', 'patch', 'prerelease', 'build', 'core'],
     argvalues=[
-        [0, 1, 2, '0.1.2'],
-        [1, 2, 3, '1.2.3'],
+        [0, 1, 2, None, None, '0.1.2'],
+        [1, 2, 3, None, None, '1.2.3'],
+        [1, 2, 3, 'beta.4', None, '1.2.3'],
+        [1, 2, 3, None, 'build.321', '1.2.3'],
+        [1, 2, 3, 'beta.4', 'build.321', '1.2.3'],
     ],
 )
-def test_version_core(major, minor, patch, core):
-    version = Version(major=major, minor=minor, patch=patch)
+def test_version_core(major, minor, patch, prerelease, build, core):
     """Test the core property output of a Version object"""
+    version = Version(major=major, minor=minor, patch=patch, prerelease=prerelease, build=build)
     assert version.core == core
 
 
