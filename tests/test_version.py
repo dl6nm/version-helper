@@ -138,3 +138,14 @@ def test_version_set(major, minor, patch, prerelease, build, expected_semver, ex
     assert version.patch == expected_version.patch
     assert version.prerelease == expected_version.prerelease
     assert version.build == expected_version.build
+
+
+def test_get_version_from_git_describe(git_describe_parameters):
+    args = git_describe_parameters.get('args')
+    expected = git_describe_parameters.get('expected')
+
+    description = Version.get_from_git_describe(
+        dirty=args.get('dirty'),
+        always=args.get('always'),
+    )
+    assert description == expected
