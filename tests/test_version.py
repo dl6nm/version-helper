@@ -110,7 +110,10 @@ def test_version_from_git(version_string, is_from_git_describe, expected_semver,
 @pytest.mark.parametrize(
     argnames=['major', 'minor', 'patch', 'prerelease', 'build', 'expected_semver', 'expected_version'],
     argvalues=[
-        [0, 1, 2, None, None, '0.1.2', Version(0, 1, 2)]
+        [0, 1, 2, None, None, '0.1.2', Version(0, 1, 2)],
+        [0, 1, 2, 'beta-1', None, '0.1.2-beta-1', Version(0, 1, 2, prerelease='beta-1')],
+        [0, 1, 2, None, 'b4711', '0.1.2+b4711', Version(0, 1, 2, build='b4711')],
+        [0, 1, 2, 'alpha.1', '123', '0.1.2-alpha.1+123', Version(0, 1, 2, 'alpha.1', '123')],
     ],
 )
 def test_version_set(major, minor, patch, prerelease, build, expected_semver, expected_version):
