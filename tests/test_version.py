@@ -142,10 +142,17 @@ def test_version_set(major, minor, patch, prerelease, build, expected_semver, ex
 
 def test_get_version_from_git_describe(git_describe_parameters):
     args = git_describe_parameters.get('args')
-    expected = git_describe_parameters.get('expected')
+    expected_version: Version = git_describe_parameters.get('expected_version')
 
-    description = Version.get_from_git_describe(
-        dirty=args.get('dirty'),
-        always=args.get('always'),
-    )
-    assert description == expected
+    if expected_version is None:
+        with pytest.raises(ValueError, match='`version_string` is not valid to Semantic Versioning Specification'):
+            Version.get_from_git_describe(
+                dirty=args.get('dirty'),
+                always=args.get('always'),
+            )
+    else:
+        version = Version.get_from_git_describe(
+            dirty=args.get('dirty'),
+            always=args.get('always'),
+        )
+        assert expected_version.full == version.full
