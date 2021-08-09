@@ -2,6 +2,8 @@
 
 `version-helper` is a package for a better version management in python projects.
 
+_This package is still under development. Code may change frequently._
+
 ![License?][shield-license]
 
     from version_helper import Version
@@ -17,7 +19,19 @@
 
 ## Table of Contents
 
+- [Installing `version-helper`](#installing-version-helper)
+- [Publish](#publish)
 - [References](#references)
+
+## Installing `version-helper`
+
+    pip install version-helper
+
+Code example see top of this readme file.
+
+## Publish
+
+    poetry publish --build [-r testpypi]
 
 ## References
 
