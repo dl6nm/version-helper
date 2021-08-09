@@ -27,7 +27,6 @@ class Version:
         self.patch: int = patch
         self.prerelease: str = prerelease
         self.build: str = build
-        self._meta: str = build
 
     def __repr__(self):
         return self.full
@@ -84,7 +83,6 @@ class Version:
         self.patch = patch
         self.prerelease = prerelease
         self.build = build
-        self._meta = build
 
     @property
     def core(self) -> str:
