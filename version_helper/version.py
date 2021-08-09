@@ -6,16 +6,14 @@ GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)
 
 
 class Version:
-    """
-    Semantic Versioning compatible class for parsing and emitting SemVer strings into a `Version` object
+    """Semantic Versioning compatible class for parsing and emitting SemVer strings into a `Version` object
 
     More details on Semantic Versioning can be found at https://semver.org/
     """
 
     def __init__(self, major: int, minor: int, patch: int,
                  prerelease: str = None, build: str = None):
-        """
-        Create a `Version` object with the given attributes
+        """Create a `Version` object with the given attributes
 
         :param major: MAJOR version when you make incompatible API changes
         :param minor: MINOR version when you add functionality in a backwards compatible manner
@@ -38,8 +36,7 @@ class Version:
 
     @staticmethod
     def parse(string: str, is_from_git_describe: bool = False) -> 'Version':
-        """
-        Parse a version string into it's individual Semantic Versioning parts
+        """Parse a version string into it's individual Semantic Versioning parts
 
         :param string: A Semantic Versioning string
         :param is_from_git_describe: Wether or not the version string is from `git describe`
@@ -66,8 +63,7 @@ class Version:
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, build: str = None):
-        """
-        Set `Version` attributes
+        """Set `Version` attributes
 
         :param major: MAJOR version when you make incompatible API changes
         :param minor: MINOR version when you add functionality in a backwards compatible manner
@@ -84,8 +80,7 @@ class Version:
 
     @property
     def core(self) -> str:
-        """
-        Core version string including major, minor and patch
+        """Core version string including major, minor and patch
 
         :return: Core version string
         """
@@ -93,8 +88,7 @@ class Version:
 
     @property
     def full(self) -> str:
-        """
-        Full Semantic Version string including prerelease and build metadata
+        """Full Semantic Version string including prerelease and build metadata
 
         :return: Full version string with all it's Semantic Versioning parts
         """

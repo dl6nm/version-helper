@@ -10,11 +10,15 @@ class Git:
 
     @staticmethod
     def _call_process(*args, **kwargs) -> subprocess.CompletedProcess:
+        """Call a process with the given `*args` and `**kwargs`
+
+        :return: A CompletedProcess with captured output (stdout and stderr)
+        """
         return subprocess.run(*args, **kwargs, capture_output=True)
 
     @classmethod
     def exec_path(cls) -> Path:
-        """Get the installation path of git or None if it was not found
+        """Get the installation path of git or None if it was not found.
 
         :return: Path object to the git executable or None
         """
@@ -56,5 +60,5 @@ class Git:
 
     @staticmethod
     def get_version():
-        """ Get the current application version from git describe """
+        """Get the current application version from git describe"""
         return subprocess.check_output(['git', 'describe']).strip().decode('utf-8')
