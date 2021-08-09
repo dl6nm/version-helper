@@ -28,6 +28,16 @@ class Git:
 
     @classmethod
     def describe(cls, dirty=False, always=False) -> str or None:
+        """Find the most recent tag that is reachable from a commit.
+
+        If the tag points to the commit, then only the tag is shown. Otherwise,
+        it suffixes the tag name with the number of additional commits on top
+        of the tagged object and the abbreviated object name of the most recent commit.
+
+        :param dirty: Append '-dirty', if the working tree has local modifications
+        :param always: Show uniquely abbreviated commit object as fallback
+        :return: Human-readable object name, describing the current git repository state
+        """
         if cls.exec_path() is None:
             return None
 
