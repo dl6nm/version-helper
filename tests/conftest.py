@@ -71,8 +71,12 @@ def git_exec_path_parameters(request, mock_subprocess):
 @pytest.fixture(
     params=[
         {
+            'args': {
+                'dirty': False,
+                'always': False
+            },
             'process': CompletedProcess(
-                args=['git', 'describe'],
+                args=['git', 'describe', '--tags'],
                 returncode=0,
                 stdout=r'0.0.1-31-gdc27049',
                 stderr=r'',
@@ -80,16 +84,93 @@ def git_exec_path_parameters(request, mock_subprocess):
             'expected': '0.0.1-31-gdc27049',
         },
         {
+            'args': {
+                'dirty': True,
+                'always': False
+            },
             'process': CompletedProcess(
-                args=['git', 'describe'],
+                args=['git', 'describe', '--tags', '--dirty'],
+                returncode=0,
+                stdout=r'0.0.1-31-gdc27049-dirty',
+                stderr=r'',
+            ),
+            'expected': '0.0.1-31-gdc27049-dirty',
+        },
+        {
+            'args': {
+                'dirty': True,
+                'always': True
+            },
+            'process': CompletedProcess(
+                args=['git', 'describe', '--tags', '--dirty', '--always'],
+                returncode=0,
+                stdout=r'0.0.1-31-gdc27049-dirty',
+                stderr=r'',
+            ),
+            'expected': '0.0.1-31-gdc27049-dirty',
+        },
+        {
+            'args': {
+                'dirty': True,
+                'always': True
+            },
+            'process': CompletedProcess(
+                args=['git', 'describe', '--tags', '--dirty', '--always'],
+                returncode=0,
+                stdout=r'46467a2-dirty',
+                stderr=r'',
+            ),
+            'expected': '46467a2-dirty',
+        },
+        {
+            'args': {
+                'dirty': False,
+                'always': True
+            },
+            'process': CompletedProcess(
+                args=['git', 'describe', '--tags', '--always'],
+                returncode=0,
+                stdout=r'46467a2',
+                stderr=r'',
+            ),
+            'expected': '46467a2',
+        },
+        {
+            'args': {
+                'dirty': False,
+                'always': False
+            },
+            'process': CompletedProcess(
+                args=['git', 'describe', '--tags'],
                 returncode=128,
                 stdout=r'',
                 stderr=r'fatal: not a git repository (or any of the parent directories): .git',
             ),
             'expected': None,
         },
+        {
+            'args': {
+                'dirty': False,
+                'always': False
+            },
+            'process': CompletedProcess(
+                args=['git', 'describe', '--tags'],
+                returncode=128,
+                stdout=r'',
+                stderr=r'fatal: No names found, cannot describe anything.',
+            ),
+            'expected': None,
+        },
     ],
-    ids=['success', 'fatal error'],
+    ids=[
+        'ok: default',
+        'ok: dirty',
+        'ok: dirty+always w/ tags',
+        'ok: dirty+always w/o tags',
+        'ok: always w/o tags',
+        'fatal: not a git repository',
+        'fatal: No names found',
+    ],
 )
 def git_describe_parameters(request, mock_subprocess):
     """Fixture for returning subprocess parameters for `git describe`"""
