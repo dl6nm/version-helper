@@ -57,8 +57,3 @@ class Git:
             if type(description) is bytes:
                 description = description.decode('utf-8')
             return description
-
-    @staticmethod
-    def get_version():
-        """Get the current application version from git describe"""
-        return subprocess.check_output(['git', 'describe']).strip().decode('utf-8')
