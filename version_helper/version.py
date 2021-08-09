@@ -1,5 +1,6 @@
 import re
 
+from version_helper import Git
 
 SEMVER_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>[\w\d\.-]+))?(?:\+(?P<build>[\w\d\.-]+))?)?$'
 GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>(?:[\w\d\-]+\.?)+)(?=\-(?:\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?)$))?(?:\-(?P<build>\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?))?$'
@@ -46,7 +47,9 @@ class Version:
         if is_from_git_describe:
             pattern = GIT_DESCRIBE_PATTERN
 
-        match = re.fullmatch(pattern, string.strip())
+        match = None
+        if string:
+            match = re.fullmatch(pattern, string.strip())
 
         if match:
             match_dict = match.groupdict()
@@ -60,6 +63,11 @@ class Version:
             )
         else:
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
+
+    @classmethod
+    def get_from_git_describe(cls, dirty=False, always=False) -> 'Version':
+        description = Git.describe(dirty=dirty, always=always)
+        return cls.parse(description, True)
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, build: str = None):
