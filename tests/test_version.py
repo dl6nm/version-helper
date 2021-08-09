@@ -4,6 +4,7 @@ from version_helper import Version
 
 
 def test_construction():
+    """Test the Version() constructor"""
     assert Version(1, 2, 3)
     assert Version(1, 2, 3, 'beta', 'a1b2c3d4')
 
@@ -33,7 +34,9 @@ def test_construction():
     ],
 )
 def test_version_parser(version_string, major, minor, patch, prerelease, build):
-    """
+    """Version parser test
+
+    The version string looks like the following schema:
     {major: int}.{minor: int}.{patch: int}[-{prerelease: str}][+{build: str}]
     """
     version = Version.parse(version_string)
@@ -58,6 +61,12 @@ def test_version_parser(version_string, major, minor, patch, prerelease, build):
     ],
 )
 def test_version_parser_value_error(version_string):
+    """Raise error when parsing an invalid version string
+
+    GIVEN some invalid version strings
+    WHEN the string is parsed into a semantic version
+    THEN a ValueError will be raised
+    """
     with pytest.raises(ValueError, match='`version_string` is not valid to Semantic Versioning Specification'):
         Version.parse(version_string)
 
@@ -71,6 +80,7 @@ def test_version_parser_value_error(version_string):
 )
 def test_version_core(major, minor, patch, core):
     version = Version(major=major, minor=minor, patch=patch)
+    """Test the core property output of a Version object"""
     assert version.core == core
 
 
@@ -95,6 +105,7 @@ def test_version_core(major, minor, patch, core):
     ],
 )
 def test_version_from_git(version_string, is_from_git_describe, expected_semver, expected_version):
+    """Test the version parser with parameter is_from_git_describe set to True or False"""
     version = Version.parse(string=version_string, is_from_git_describe=is_from_git_describe)
 
     assert str(version) == expected_semver
@@ -117,6 +128,7 @@ def test_version_from_git(version_string, is_from_git_describe, expected_semver,
     ],
 )
 def test_version_set(major, minor, patch, prerelease, build, expected_semver, expected_version):
+    """Test for setting new values to a `Version` object"""
     version = Version(
         major=major,
         minor=minor,
@@ -141,6 +153,7 @@ def test_version_set(major, minor, patch, prerelease, build, expected_semver, ex
 
 
 def test_get_version_from_git_describe(git_describe_parameters):
+    """Test for getting a `Version` object from collecting/parsing the git describe output"""
     args = git_describe_parameters.get('args')
     expected_version: Version = git_describe_parameters.get('expected_version')
 
