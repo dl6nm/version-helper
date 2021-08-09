@@ -27,7 +27,7 @@ pytest = "^6.2.4"
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "--tb=auto"
+addopts = "--tb=short"
 # --tb=short
 # --full-trace
 # --cov=version_helper
