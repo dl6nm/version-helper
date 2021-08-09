@@ -37,8 +37,8 @@ def test_call_process_git_describe(git_describe_parameters):
 
 def test_git_describe(git_describe_parameters):
     """Test (mock) if git describe returns the expected values"""
-    describe = Git.describe(
+    description = Git.describe(
         dirty=git_describe_parameters.get('args').get('dirty'),
         always=git_describe_parameters.get('args').get('always'),
     )
-    assert describe == git_describe_parameters.get('expected')
+    assert description == git_describe_parameters.get('expected')
