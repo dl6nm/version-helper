@@ -78,12 +78,12 @@ def git_exec_path_parameters(request, mock_subprocess):
             'process': CompletedProcess(
                 args=['git', 'describe', '--tags'],
                 returncode=0,
-                stdout=r'0.0.1',
-                stderr=r'',
+                stdout=b'0.0.1',
+                stderr=b'',
             ),
             'expected': '0.0.1',
             'expected_semver': '0.0.1',
-            'expected_Version': Version(major=0, minor=0, patch=1, prerelease=None, build=None),
+            'expected_version': Version(major=0, minor=0, patch=1, prerelease=None, build=None),
         },
         {
             'args': {
@@ -98,7 +98,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '0.0.1-31-gdc27049',
             'expected_semver': '0.0.1+31-gdc27049',
-            'expected_Version': Version(major=0, minor=0, patch=1, prerelease=None, build='31-gdc27049'),
+            'expected_version': Version(major=0, minor=0, patch=1, prerelease=None, build='31-gdc27049'),
         },
         {
             'args': {
@@ -113,7 +113,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '0.0.1-alpha.1-31-gdc27049',
             'expected_semver': '0.0.1-alpha.1+31-gdc27049',
-            'expected_Version': Version(major=0, minor=0, patch=1, prerelease='alpha.1', build='31-gdc27049'),
+            'expected_version': Version(major=0, minor=0, patch=1, prerelease='alpha.1', build='31-gdc27049'),
         },
         {
             'args': {
@@ -128,7 +128,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '0.0.1-31-gdc27049-dirty',
             'expected_semver': '0.0.1+31-gdc27049-dirty',
-            'expected_Version': Version(major=0, minor=0, patch=1, prerelease=None, build='31-gdc27049-dirty'),
+            'expected_version': Version(major=0, minor=0, patch=1, prerelease=None, build='31-gdc27049-dirty'),
         },
         {
             'args': {
@@ -143,7 +143,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '0.1.0-rc.3-31-gdc27049-dirty',
             'expected_semver': '0.1.0-rc.3+31-gdc27049-dirty',
-            'expected_Version': Version(major=0, minor=0, patch=1, prerelease='rc.3', build='31-gdc27049-dirty'),
+            'expected_version': Version(major=0, minor=1, patch=0, prerelease='rc.3', build='31-gdc27049-dirty'),
         },
         {
             'args': {
@@ -158,7 +158,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '0.0.1-31-gdc27049-dirty',
             'expected_semver': '0.0.1+31-gdc27049-dirty',
-            'expected_Version': Version(major=0, minor=0, patch=1, prerelease=None, build='31-gdc27049-dirty'),
+            'expected_version': Version(major=0, minor=0, patch=1, prerelease=None, build='31-gdc27049-dirty'),
         },
         {
             'args': {
@@ -173,7 +173,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '46467a2-dirty',
             'expected_semver': None,
-            'expected_Version': None,
+            'expected_version': None,
         },
         {
             'args': {
@@ -188,7 +188,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': '46467a2',
             'expected_semver': None,
-            'expected_Version': None,
+            'expected_version': None,
         },
         {
             'args': {
@@ -203,7 +203,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': None,
             'expected_semver': None,
-            'expected_Version': None,
+            'expected_version': None,
         },
         {
             'args': {
@@ -218,7 +218,7 @@ def git_exec_path_parameters(request, mock_subprocess):
             ),
             'expected': None,
             'expected_semver': None,
-            'expected_Version': None,
+            'expected_version': None,
         },
     ],
     ids=[
