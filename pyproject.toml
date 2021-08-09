@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "version-helper"
-version = "0.0.1"
+version = "0.1.0"
 description = "Helpers for a better version management in python projects"
 authors = ["DL6NM <mail@dl6nm.de>"]
 license = "MIT"
@@ -23,6 +23,19 @@ packages = [
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "--tb=short"
+# --tb=short
+# --full-trace
+# --cov=version_helper
+# --cov-report=html
+# --showlocals
+# --setup-show
+# --setup-plan
+# --disable-warnings
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
