@@ -103,6 +103,10 @@ def test_version_core(major, minor, patch, prerelease, build, core):
             Version(major=1, minor=2, patch=3, prerelease='beta.4', build='3-gf0a9091')
         ],
         [
+            '1.2.3-3-gf0a9091', True, '1.2.3+3-gf0a9091',
+            Version(major=1, minor=2, patch=3, prerelease=None, build='3-gf0a9091')
+        ],
+        [
             '0.1.2-alpha.0+3-gf0a9091-dirty', False, '0.1.2-alpha.0+3-gf0a9091-dirty',
             Version(major=0, minor=1, patch=2, prerelease='alpha.0', build='3-gf0a9091-dirty')
         ],
@@ -133,18 +137,8 @@ def test_version_from_git(version_string, is_from_git_describe, expected_semver,
 )
 def test_version_set(major, minor, patch, prerelease, build, expected_semver, expected_version):
     """Test for setting new values to a `Version` object"""
-    version = Version(
-        major=major,
-        minor=minor,
-        patch=patch,
-    )
-    version.set(
-        major=major,
-        minor=minor,
-        patch=patch,
-        prerelease=prerelease,
-        build=build,
-    )
+    version = Version(major=major, minor=minor, patch=patch)
+    version.set(major=major, minor=minor, patch=patch, prerelease=prerelease, build=build)
 
     assert str(version) == expected_semver
     assert version.full == expected_semver
