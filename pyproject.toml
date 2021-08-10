@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "version-helper"
-version = "0.1.0"
+version = "0.1.1"
 description = "Helpers for a better version management in python projects"
 authors = ["DL6NM <mail@dl6nm.de>"]
 license = "MIT"
@@ -24,6 +24,7 @@ python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
+pytest-cov = "^2.12.1"
 
 [tool.pytest.ini_options]
 testpaths = "tests"

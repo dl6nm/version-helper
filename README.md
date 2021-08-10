@@ -4,6 +4,7 @@
 
 _This package is still under development. Code may change frequently._
 
+[![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
 ![License?][shield-license]
 
     from version_helper import Version
@@ -19,19 +20,26 @@ _This package is still under development. Code may change frequently._
 
 ## Table of Contents
 
-- [Installing `version-helper`](#installing-version-helper)
-- [Publish](#publish)
-- [References](#references)
+- [Version Helper](#version-helper)
+  - [Table of Contents](#table-of-contents)
+  - [Installing `version-helper`](#installing-version-helper)
+  - [Publish](#publish)
+  - [Changelog](#changelog)
+  - [References](#references)
 
 ## Installing `version-helper`
 
     pip install version-helper
 
-Code example see top of this readme file.
+Code example see at the top of this page.
 
 ## Publish
 
     poetry publish --build [-r testpypi]
+
+## Changelog
+
+All notable changes to this project will be documented in the [CHANGELOG.md](CHANGELOG.md).
 
 ## References
 
