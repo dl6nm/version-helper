@@ -5,7 +5,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: [3.8]
+        python-version: [3.8, 3.9]
         os: [windows-latest]
     env:
       OS: ${{ matrix.os }}
@@ -31,8 +31,7 @@ jobs:
         with:
           name: codecov-umbrella
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage.xml,./coverage
-          directory: ./coverage/reports/
+          files: ./coverage.xml
           flags: unittests
           env_vars: OS,PYTHON
           fail_ci_if_error: true

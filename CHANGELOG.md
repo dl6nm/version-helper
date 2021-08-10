@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
+### [0.1.2] (2021-08-10)
+
+#### Fixed
+
+- Fix error in workflow on uploading coverage report to Codecov
+
 ### [0.1.1] (2021-08-10)
 
 #### Added
@@ -39,6 +45,7 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.1.2]: https://github.com/dl6nm/version-helper/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/dl6nm/version-helper/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/dl6nm/version-helper/compare/0.0.1...0.1.0
 [0.0.1]: https://github.com/dl6nm/version-helper/releases/tag/0.0.1
