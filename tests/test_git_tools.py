@@ -8,11 +8,18 @@ def test_construction():
     assert Git()
 
 
+def test_call_process():
+    """Test the static method _call_process()"""
+    proc = Git._call_process(['git', '--version'])
+    assert isinstance(proc, CompletedProcess)
+
+
 def test_call_process_git_exec_path(git_exec_path_parameters):
     """Test for calling a process from the Git class (git --exec-path)"""
     proc = Git._call_process()
     expexted_process: CompletedProcess = git_exec_path_parameters.get('process')
 
+    assert proc == expexted_process
     assert proc.args == expexted_process.args
     assert proc.returncode == expexted_process.returncode
     assert proc.stdout == expexted_process.stdout
