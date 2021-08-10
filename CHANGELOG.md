@@ -8,11 +8,28 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
-### [0.2.0] (2021-08-10)
+### UNRELEASED 0.2.0 (2021-08-10)
 
 #### Added
 
 - Add build, release and publish workflow job
+
+### [0.2.0-alpha.0] (2021-08-10)
+
+#### Fixed
+
+- Fix problem on setting the PyPI token for publishing the package with Poetry
+
+### [0.1.3] (2021-08-10)
+
+#### Added
+
+- Add build and publish workflow job
+- Include CHANGELOG.md in package
+
+#### Fixed
+
+- Fix problem on test coverage, avoid to cover the tests itself
 
 ### [0.1.2] (2021-08-10)
 
@@ -50,7 +67,8 @@ _All releases will be published to [PyPI]._
 
 
 
-[0.2.0]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.2.0
+[0.2.0-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.1.3...0.2.0-alpha.0
+[0.1.3]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/dl6nm/version-helper/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/dl6nm/version-helper/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/dl6nm/version-helper/compare/0.0.1...0.1.0
