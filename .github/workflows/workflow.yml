@@ -65,6 +65,7 @@ jobs:
         with:
           artifacts: "dist/*"
           draft: true
+          owner: dl6nm
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Package
