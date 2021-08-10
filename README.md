@@ -4,8 +4,11 @@
 
 _This package is still under development. Code may change frequently._
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dl6nm/version-helper/Codecov%20Workflow)
+![PyPI](https://img.shields.io/pypi/v/version-helper)
 [![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
-![License?][shield-license]
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/version-helper)
+![GitHub](https://img.shields.io/github/license/dl6nm/version-helper)
 
     from version_helper import Version
 
@@ -46,7 +49,3 @@ All notable changes to this project will be documented in the [CHANGELOG.md](CHA
 - [git-describe](https://git-scm.com/docs/git-describe)
 - [Poetry](https://python-poetry.org/)
 - [Semantic Versioning](https://semver.org/)
-
-
-
-[shield-license]: https://img.shields.io/badge/license-MIT-blue.svg "MIT License"
