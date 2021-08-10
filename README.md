@@ -4,6 +4,7 @@
 
 _This package is still under development. Code may change frequently._
 
+[![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
 ![License?][shield-license]
 
     from version_helper import Version
