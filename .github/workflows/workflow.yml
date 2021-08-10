@@ -58,9 +58,6 @@ jobs:
           poetry --version
           poetry install
           poetry show
-      - name: Configure PyPI Credentials
-        run: |
-          - poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
       - name: Build Package
         run: poetry build
       - name: Create Release
@@ -71,4 +68,6 @@ jobs:
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Package
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
         run: poetry publish
