@@ -19,6 +19,7 @@ _All releases will be published to [PyPI]._
 #### Added
 
 - Add macOS and Ubuntu to the test matrix
+- Add missing tests for the `Version` class dunder methods `__str__` and `__repr__`
 
 #### Changed
 

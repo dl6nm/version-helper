@@ -11,6 +11,22 @@ def test_construction():
 
 
 @pytest.mark.parametrize(
+    argnames=['version', 'expected'],
+    argvalues=[
+        [Version(1, 2, 3), '1.2.3'],
+        [Version(1, 2, 3, 'alpha.1'), '1.2.3-alpha.1'],
+        [Version(1, 2, 3, None, None), '1.2.3'],
+        [Version(1, 2, 3, 'beta', 'a1b2c3d4'), '1.2.3-beta+a1b2c3d4'],
+        [Version(1, 2, 3, None, 'build-246'), '1.2.3+build-246'],
+    ],
+)
+def test_dunder_methods(version, expected):
+    """Test the Version() dunder methods __str__ and __repr__"""
+    assert version.__str__() == expected
+    assert version.__repr__() == expected
+
+
+@pytest.mark.parametrize(
     argnames=['version_string', 'major', 'minor', 'patch', 'prerelease', 'build'],
     argvalues=[
         ['0.1.2', 0, 1, 2, None, None],
