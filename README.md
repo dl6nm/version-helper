@@ -4,10 +4,10 @@
 
 _This package is still under development. Code may change frequently._
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dl6nm/version-helper/Codecov%20Workflow)
 ![PyPI](https://img.shields.io/pypi/v/version-helper)
-[![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/version-helper)
+[![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dl6nm/version-helper/Codecov%20Workflow)
 ![GitHub](https://img.shields.io/github/license/dl6nm/version-helper)
 
     from version_helper import Version

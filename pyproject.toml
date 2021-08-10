@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "version-helper"
-version = "0.1.2"
+version = "0.1.3"
 description = "Helpers for a better version management in python projects"
 authors = ["DL6NM <mail@dl6nm.de>"]
 license = "MIT"
@@ -18,6 +18,7 @@ classifiers = [
 packages = [
     { include = "version_helper" },
 ]
+include = ["CHANGELOG.md"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -28,11 +29,9 @@ pytest-cov = "^2.12.1"
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "--tb=short"
+addopts = "--tb=short --cov=version_helper --cov-report=html --cov-report=xml"
 # --tb=short
 # --full-trace
-# --cov=version_helper
-# --cov-report=html
 # --showlocals
 # --setup-show
 # --setup-plan

@@ -1,7 +1,11 @@
 name: Codecov Workflow
+
 on: [push]
+
 jobs:
-  run:
+
+  test:
+    name: Run Tests and Codecov
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -25,14 +29,46 @@ jobs:
           poetry show
       - name: Generate coverage report
         run: |
-          poetry run pytest --cov=./ --cov-report=xml
+          poetry run pytest --cov=version_helper --cov-report=xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
           name: codecov-umbrella
-          token: ${{ secrets.CODECOV_TOKEN }}
+#          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.xml
           flags: unittests
           env_vars: OS,PYTHON
           fail_ci_if_error: true
           verbose: true
+
+  publish:
+    name: Build and Publish Package
+    needs: [test]
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@master
+      - name: Setup Python
+        uses: actions/setup-python@master
+      - name: Setup Python Poetry
+        uses: abatilo/actions-poetry@v2.1.0
+      - name: Install Dependencies
+        run: |
+          poetry --version
+          poetry install
+          poetry show
+      - name: Configure PyPI Credentials
+        run: |
+          - poetry config pypi-token.pypi ${{ secrets.PYPI_TOKEN }}
+      - name: Build Package
+        run: poetry build
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: "dist/*"
+          draft: true
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Package
+        run: poetry publish
