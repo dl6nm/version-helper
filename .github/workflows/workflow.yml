@@ -20,9 +20,9 @@ jobs:
         uses: abatilo/actions-poetry@v2.1.0
       - name: Install dependencies
         run: |
-          - poetry --version
-          - poetry install
-          - poetry show
+          poetry --version
+          poetry install
+          poetry show
       - name: Generate coverage report
         run: |
           poetry run pytest --cov=./ --cov-report=xml
