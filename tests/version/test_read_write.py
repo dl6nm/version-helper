@@ -3,28 +3,24 @@ import pytest
 from version_helper import Version
 
 
-@pytest.mark.skip("This test is not fully implemented yet and won't be working")
 @pytest.mark.parametrize(
-    argnames=['filename', 'var_name', 'separator'],
+    argnames=['filename', 'var_name', 'separator', 'full_version'],
     argvalues=[
-        ['version.txt', None, None],
-        ['__version__.py', '__version__', '='],
-        ['__version__.py', 'APP_VERSION', '='],
-        ['version.py', 'version', ':'],
-        ['version', None, '='],
+        ['__version__.py', '__version__', '=', '1.2.3-beta.1+build-987'],
+        ['app_version.py', 'APP_VERSION', '=', '0.1.2+build-345'],
+        ['version', None, '=', '2.1.0-rc.1+build-3456'],
+        ['version.txt', None, None, '1.2.3-beta.1+build-987'],
     ],
+    ids=[
+        '__version__.py',
+        'app_version.py',
+        'version',
+        'version.txt',
+    ]
 )
 class TestReadWriteFile:
 
-    def test_read_file(self, tmp_path, filename, var_name, separator):
-        # @todo: add fixture files for reading a version from a file
-        file = tmp_path/filename
-        version = Version.read_from_file(
-            file=file,
-            variable_name=var_name,
-            separator=separator,
-        )
-        assert False
+    def test_read_file(self, datadir, filename, var_name, separator, full_version):
 
     def test_write_file(self, tmp_path, filename, versions, var_name, separator):
         version: Version = versions
@@ -35,6 +31,8 @@ class TestReadWriteFile:
         # @todo: choose the type of the version to write
 
         version.write_file(
+        file = datadir/filename
+        version = Version.read_from_file(
             file=file,
             variable_name=var_name,
             separator=separator,
@@ -43,3 +41,4 @@ class TestReadWriteFile:
         read_version = Version.read_file(file=file, variable_name=var_name, separator=separator)
         assert read_version == version.full
         assert False
+        assert version.full == full_version
