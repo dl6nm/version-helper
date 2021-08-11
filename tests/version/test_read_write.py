@@ -9,7 +9,7 @@ from version_helper import Version
         ['__version__.py', '__version__', '=', '1.2.3-beta.1+build-987'],
         ['app_version.py', 'APP_VERSION', '=', '0.1.2+build-345'],
         ['version', None, '=', '2.1.0-rc.1+build-3456'],
-        ['version.txt', None, None, '1.2.3-beta.1+build-987'],
+        ['version.txt', 'version', ':', '1.2.3-beta.1+build-987'],
     ],
     ids=[
         '__version__.py',

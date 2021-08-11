@@ -1,1 +1,1 @@
-1.2.3-beta.1+build-987
+version: 1.2.3-beta.1+build-987
