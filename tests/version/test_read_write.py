@@ -51,14 +51,13 @@ class TestReadWriteFile:
     #   - FEATURE: WriteVersion - overwrite the version in the file
     #   - FEATURE: WriteVersion - choose the type of the version to write
 
-
-    def test_read_file(self, datadir, read_file_parameters):
+    def test_read_file(self, shared_datadir, read_file_parameters):
         filename = read_file_parameters.get('filename')
         variable_name = read_file_parameters.get('variable_name')
         separator = read_file_parameters.get('separator')
         full_version = read_file_parameters.get('full_version')
 
-        file = datadir/filename
+        file = shared_datadir/filename
         version = Version.read_from_file(
             file=file,
             variable_name=variable_name,
