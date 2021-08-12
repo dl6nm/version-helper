@@ -1,3 +1,4 @@
+import pathlib
 import re
 
 from version_helper import Git
@@ -109,3 +110,42 @@ class Version:
         if self.build:
             semver += f'+{self.build}'
         return semver
+
+    @staticmethod
+    def read_from_file(file: pathlib.Path, variable_name: str = '__version__', separator: str = '=') -> 'Version':
+        if not separator and variable_name:
+            raise ValueError('None value for separator. Could not parse file.')
+        if not variable_name and separator:
+            raise ValueError('None value for variable_name. Could not parse file.')
+
+        version_string = None
+
+        if file.suffix == '.py':
+            if separator != '=':
+                raise ValueError('Only "=" is allowed as separator for .py files. Could not parse file.')
+
+            # load python file as module
+            from importlib.util import spec_from_loader, module_from_spec
+            from importlib.machinery import SourceFileLoader
+
+            spec = spec_from_loader("version_file", SourceFileLoader("version_file", str(file.absolute())))
+            version_file = module_from_spec(spec)
+            spec.loader.exec_module(version_file)
+
+            # get version string
+            version_string = eval(f"version_file.{variable_name}")
+        else:
+            with open(file, 'r') as f:
+                line = f.readline().strip()
+                while line:
+                    if variable_name and separator:
+                        if line.startswith(variable_name):
+                            version_string = line.split(separator, 1)[1].strip()
+                            break
+                    else:
+                        version_string = line.strip()
+                        break
+                    line = f.readline().strip()
+
+        return Version.parse(version_string)
+
