@@ -8,11 +8,13 @@ _This package is still under development. Code may change frequently._
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/version-helper)
 [![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dl6nm/version-helper/Codecov%20Workflow)
+![Lines of code](https://img.shields.io/tokei/lines/github/dl6nm/version-helper)
 ![GitHub](https://img.shields.io/github/license/dl6nm/version-helper)
 
     from version_helper import Version
 
-    # Parse output from `git describe --tag` and return a semantic versioning compatible `Version` object
+    # Parse output from `git describe --tag` and 
+    # return a semantic versioning compatible `Version` object
     v = Version.get_from_git_describe()
 
     # Output core version string including major, minor and patch

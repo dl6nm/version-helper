@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8, 3.9]
-        os: [windows-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
     env:
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python-version }}
@@ -65,6 +65,7 @@ jobs:
         with:
           artifacts: "dist/*"
           draft: true
+          owner: dl6nm
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Package

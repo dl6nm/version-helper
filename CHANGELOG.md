@@ -12,7 +12,18 @@ _All releases will be published to [PyPI]._
 
 #### Added
 
-- Add build, release and publish workflow job
+- Add GitHub workflows for build, release and publish this python package `version-helper`
+
+### [0.2.0-alpha.1] (2021-08-10)
+
+#### Added
+
+- Add macOS and Ubuntu to the test matrix
+- Add missing tests for the `Version` class dunder methods `__str__` and `__repr__`
+
+#### Changed
+
+- Add me (dl6nm) as owner explicitly for creating a new release
 
 ### [0.2.0-alpha.0] (2021-08-10)
 

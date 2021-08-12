@@ -237,3 +237,21 @@ def git_exec_path_parameters(request, mock_subprocess):
 def git_describe_parameters(request, mock_subprocess):
     """Fixture for returning subprocess parameters for `git describe`"""
     return request.param
+
+
+@pytest.fixture(
+    params=[
+        Version(0, 1, 2),
+        Version(1, 2, 3, 'beta.1'),
+        Version(1, 2, 3, 'beta.1', 'build-987'),
+        Version(1, 2, 3, None, 'build-987'),
+    ],
+    ids=[
+        'core',
+        'core-pre',
+        'core-pre+build',
+        'core+build',
+    ]
+)
+def versions(request):
+    return request.param
