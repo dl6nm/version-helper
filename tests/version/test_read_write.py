@@ -46,29 +46,22 @@ class TestReadWriteFile:
     # TODO: Add test for ValueError('None value for separator. Could not parse file.')
     # TODO: Add test for ValueError('None value for variable_name. Could not parse file.')
 
+    # TODO: Add test for writing the version string to a file
+    #   - FEATURE: WriteVersion - append the version to the file
+    #   - FEATURE: WriteVersion - overwrite the version in the file
+    #   - FEATURE: WriteVersion - choose the type of the version to write
 
-    def test_write_file(self, tmp_path, filename, versions, var_name, separator):
-        version: Version = versions
-        file = tmp_path/filename
+
     def test_read_file(self, datadir, read_file_parameters):
         filename = read_file_parameters.get('filename')
         variable_name = read_file_parameters.get('variable_name')
         separator = read_file_parameters.get('separator')
         full_version = read_file_parameters.get('full_version')
 
-        # @todo: append the versio to the file
-        # @todo: overwrite the version in the file
-        # @todo: choose the type of the version to write
-
-        version.write_file(
         file = datadir/filename
         version = Version.read_from_file(
             file=file,
             variable_name=variable_name,
             separator=separator,
         )
-
-        read_version = Version.read_file(file=file, variable_name=var_name, separator=separator)
-        assert read_version == version.full
-        assert False
         assert version.full == full_version
