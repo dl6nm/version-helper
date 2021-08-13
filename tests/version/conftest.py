@@ -47,5 +47,6 @@ import pytest
         'version.txt',
     ]
 )
-def read_file_parameters(request):
+def rw_file_parameters(request):
+    """Fixture for reading and writing to a file"""
     return request.param

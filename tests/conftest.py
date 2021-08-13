@@ -254,4 +254,5 @@ def git_describe_parameters(request, mock_subprocess):
     ]
 )
 def versions(request):
+    """Return Version objects for testing"""
     return request.param
