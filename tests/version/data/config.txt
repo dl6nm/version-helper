@@ -1,0 +1,4 @@
+DEBUG = False
+DEVELOP = True
+VERSION = "0.2.0-alpha.2+build-1357"
+APP_PATH = "/path/to/my/app"
