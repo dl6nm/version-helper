@@ -69,9 +69,26 @@ class TestReadWriteFile:
                 variable_name='__version__',
                 separator=separator,
             )
+
+    @pytest.mark.parametrize(
+        argnames=['variable_name'],
+        argvalues=[
+            [None],
+            [''],
+        ],
+        ids=[
+            'None',
+            'empty string'
+        ],
+    )
+    def test_read_file_value_error_none_variable_name(self, shared_datadir, variable_name):
+        with pytest.raises(ValueError, match='None value for variable_name. Could not parse file.'):
+            Version.read_from_file(
+                file=shared_datadir/'__version__.py',
+                variable_name=variable_name,
+                separator='=',
             )
 
-    # TODO: Add test for ValueError('None value for variable_name. Could not parse file.')
 
     # TODO: Add test for writing the version string to a file
     #   - FEATURE: WriteVersion - append the version to the file
