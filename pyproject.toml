@@ -1,17 +1,21 @@
 [tool.poetry]
 name = "version-helper"
-version = "0.2.0-rc.0"
+version = "0.2.0"
 description = "Helpers for a better version management in python projects"
 authors = ["DL6NM <mail@dl6nm.de>"]
 license = "MIT"
 readme = "README.md"
 homepage = "https://github.com/dl6nm/version-helper"
 repository = "https://github.com/dl6nm/version-helper"
-keywords = ["git", "describe", "tags", "version", "__version__.py"]
+keywords = ["git", "describe", "tags", "version", "Semantic Versioning"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
     "Topic :: Software Development :: Version Control",
     "Topic :: Software Development :: Version Control :: Git",
 ]
