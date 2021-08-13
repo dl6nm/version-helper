@@ -147,5 +147,9 @@ class Version:
                         break
                     line = f.readline().strip()
 
+            # clean version string and remove single and double quotes
+            version_string = version_string.replace('"', '')
+            version_string = version_string.replace("'", "")
+
         return Version.parse(version_string)
 

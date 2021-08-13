@@ -18,6 +18,12 @@ from version_helper import Version
             'full_version': '0.1.2+build-345',
         },
         {
+            'filename': 'config.txt',
+            'variable_name': 'VERSION',
+            'separator': '=',
+            'full_version': '0.2.0-alpha.2+build-1357',
+        },
+        {
             'filename': 'version',
             'variable_name': None,
             'separator': None,
@@ -33,6 +39,7 @@ from version_helper import Version
     ids=[
         '__version__.py',
         'app_version.py',
+        'config.txt',
         'version',
         'version.txt',
     ]
@@ -89,13 +96,12 @@ class TestReadWriteFile:
                 separator='=',
             )
 
-
     # TODO: Add test for writing the version string to a file
     #   - FEATURE: WriteVersion - append the version to the file
     #   - FEATURE: WriteVersion - overwrite the version in the file
     #   - FEATURE: WriteVersion - choose the type of the version to write
 
-    def test_read_file(self, shared_datadir, read_file_parameters):
+    def test_read_from_file(self, shared_datadir, read_file_parameters):
         filename = read_file_parameters.get('filename')
         variable_name = read_file_parameters.get('variable_name')
         separator = read_file_parameters.get('separator')
