@@ -200,4 +200,3 @@ class Version:
             data += version_string
 
         return file.write_text(data, encoding=encoding)
-

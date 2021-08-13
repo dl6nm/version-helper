@@ -18,13 +18,14 @@ class TestWriteToFile:
             ['full'],
         ],
     )
-    def test_write_to_file(self, tmp_path, shared_datadir, read_file_parameters, version_type):
-        filename = read_file_parameters.get('filename')
-        variable_name = read_file_parameters.get('variable_name')
-        separator = read_file_parameters.get('separator')
-        full_version = read_file_parameters.get('full_version')
-        quote_version = read_file_parameters.get('quote_version')
-        encoding = read_file_parameters.get('encoding')
+    def test_write_to_file(self, tmp_path, shared_datadir, rw_file_parameters, version_type):
+        """Basic test for writing a version to a file"""
+        filename = rw_file_parameters.get('filename')
+        variable_name = rw_file_parameters.get('variable_name')
+        separator = rw_file_parameters.get('separator')
+        full_version = rw_file_parameters.get('full_version')
+        quote_version = rw_file_parameters.get('quote_version')
+        encoding = rw_file_parameters.get('encoding')
 
         version = Version.parse(full_version)
         write_file_path = tmp_path/filename

@@ -8,11 +8,19 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
-### UNRELEASED 0.2.0 (2021-mm-dd)
+### [0.2.0] (2021-08-13)
 
 #### Added
 
+- Add method `read_from_file()` to `Version` class for reading a version string from a file
+- Add method `write_to_file()` to `Version` class for writing a version string to a file
+
+#### Maintenance
+
+- Fix problem on setting the PyPI token for publishing the package with Poetry
 - Add GitHub workflows for build, release and publish this python package `version-helper`
+- Add macOS and Ubuntu to the test matrix
+- Add missing tests for the `Version` class dunder methods `__str__` and `__repr__`
 
 ### [0.2.0-beta.0] (2021-08-13)
 
@@ -83,6 +91,7 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.2.0]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.2.0
 [0.2.0-beta.0]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.1...0.2.0-beta.0
 [0.2.0-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.0...0.2.0-alpha.1
 [0.2.0-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.1.3...0.2.0-alpha.0
