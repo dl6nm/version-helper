@@ -51,12 +51,24 @@ class TestReadWriteFile:
                 separator=':',
             )
 
-    def test_read_file_value_error_none_separator(self, shared_datadir):
+    @pytest.mark.parametrize(
+        argnames=['separator'],
+        argvalues=[
+            [None],
+            [''],
+        ],
+        ids=[
+            'None',
+            'empty string'
+        ],
+    )
+    def test_read_file_value_error_none_separator(self, shared_datadir, separator):
         with pytest.raises(ValueError, match='None value for separator. Could not parse file.'):
             Version.read_from_file(
                 file=shared_datadir/'__version__.py',
                 variable_name='__version__',
-                separator=None,
+                separator=separator,
+            )
             )
 
     # TODO: Add test for ValueError('None value for variable_name. Could not parse file.')
