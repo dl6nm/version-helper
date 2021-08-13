@@ -38,8 +38,6 @@ _This package is still under development. Code may change frequently._
 
     pip install version-helper
 
-Code example see at the top of this page.
-
 ## Usage
 
 ### Reading version from a file
