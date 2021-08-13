@@ -165,3 +165,39 @@ class Version:
 
         return Version.parse(version_string)
 
+    def write_to_file(
+            self,
+            file: pathlib.Path,
+            variable_name: str = '__version__',
+            separator: str = '=',
+            version_type: str = 'full',
+            quote_version: bool = True,
+            encoding: str = 'utf-8',
+    ) -> int:
+        """Writing a version string to a file
+
+        :param file: Path-like object to the file containing the version string
+        :param variable_name: Name of the variable, where the version string is assigned to
+        :param separator: Separator between the variables name and the assigned version string.
+        :param version_type: Type of the version to write to the file. ['core', 'full']
+        :param quote_version: Adds double-quotes around the version string
+        :param encoding: Encoding of the file to write
+        :return: The number of bytes written
+        """
+        data = ''
+        if variable_name and separator:
+            data += f'{variable_name}{separator}'
+
+        version_string = ''
+        if version_type == 'core':
+            version_string = self.core
+        elif version_type == 'full':
+            version_string = self.full
+
+        if quote_version:
+            data += f'"{version_string}"'
+        else:
+            data += version_string
+
+        return file.write_text(data, encoding=encoding)
+
