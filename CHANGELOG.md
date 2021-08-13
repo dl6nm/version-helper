@@ -8,11 +8,15 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
-### UNRELEASED 0.2.0 (2021-08-10)
+### UNRELEASED 0.2.0 (2021-mm-dd)
 
 #### Added
 
 - Add GitHub workflows for build, release and publish this python package `version-helper`
+
+### [0.2.0-beta.0] (2021-08-13)
+
+- Add method `write_to_file()` to `Version` class for writing a version string to a file
 
 ### [0.2.0-alpha.1] (2021-08-12)
 
@@ -79,6 +83,8 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.2.0-beta.0]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.1...0.2.0-beta.0
+[0.2.0-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.0...0.2.0-alpha.1
 [0.2.0-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.1.3...0.2.0-alpha.0
 [0.1.3]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/dl6nm/version-helper/compare/0.1.1...0.1.2
