@@ -113,6 +113,18 @@ class Version:
 
     @staticmethod
     def read_from_file(file: pathlib.Path, variable_name: str = '__version__', separator: str = '=') -> 'Version':
+        """Reading a version string from a file.
+
+        The version string in the `file` could be stored as simple text
+        or as a value assigned to a `variable_name` with a `separator`.
+        Other variables, above or below the version assignment (`variable_name`),
+        are allowed in the `file` to read from.
+
+        :param file: Path-like object to the file containing the version string
+        :param variable_name: Name of the variable, where the version string is assigned to
+        :param separator: Separator between the variables name and the assigned version string.
+        :return: A `Version` object with the parsed version string from the `file`
+        """
         if not separator and variable_name:
             raise ValueError('None value for separator. Could not parse file.')
         if not variable_name and separator:
