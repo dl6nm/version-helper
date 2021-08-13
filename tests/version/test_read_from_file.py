@@ -51,11 +51,6 @@ class TestReadFromFile:
                 separator='=',
             )
 
-    # TODO: Add test for writing the version string to a file
-    #   - FEATURE: WriteVersion - append the version to the file
-    #   - FEATURE: WriteVersion - overwrite the version in the file
-    #   - FEATURE: WriteVersion - choose the type of the version to write
-
     def test_read_from_file(self, shared_datadir, read_file_parameters):
         filename = read_file_parameters.get('filename')
         variable_name = read_file_parameters.get('variable_name')
