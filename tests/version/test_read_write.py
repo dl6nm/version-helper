@@ -42,12 +42,11 @@ def read_file_parameters(request):
 
 
 class TestReadWriteFile:
-    # TODO: Add test for ValueError('Only "=" is allowed as separator for .py files. Could not parse file.')
 
     def test_read_file_value_error_wrong_py_separator(self, shared_datadir):
         with pytest.raises(ValueError, match='Only "=" is allowed as separator for .py files. Could not parse file.'):
             Version.read_from_file(
-                file=shared_datadir/'__version__py',
+                file=shared_datadir/'__version__.py',
                 variable_name='__version__',
                 separator=':',
             )

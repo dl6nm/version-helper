@@ -14,12 +14,13 @@ _All releases will be published to [PyPI]._
 
 - Add GitHub workflows for build, release and publish this python package `version-helper`
 
-### [0.2.0-alpha.1] (2021-08-10)
+### [0.2.0-alpha.1] (2021-08-12)
 
 #### Added
 
 - Add macOS and Ubuntu to the test matrix
 - Add missing tests for the `Version` class dunder methods `__str__` and `__repr__`
+- Add method `read_from_file()` to `Version` class for reading a version string from a file
 
 #### Changed
 
