@@ -28,7 +28,6 @@ _This package is still under development. Code may change frequently._
 - [Version Helper](#version-helper)
   - [Table of Contents](#table-of-contents)
   - [Installing `version-helper`](#installing-version-helper)
-  - [Publish](#publish)
   - [Changelog](#changelog)
   - [References](#references)
 
@@ -37,10 +36,6 @@ _This package is still under development. Code may change frequently._
     pip install version-helper
 
 Code example see at the top of this page.
-
-## Publish
-
-    poetry publish --build [-r testpypi]
 
 ## Changelog
 
