@@ -4,24 +4,17 @@
 
 _This package is still under development. Code may change frequently._
 
-![PyPI](https://img.shields.io/pypi/v/version-helper)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/version-helper)
+[![PyPI](https://img.shields.io/pypi/v/version-helper)][version-helper-pypi]
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/version-helper)][version-helper-pypi]
 [![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dl6nm/version-helper/Codecov%20Workflow)
-![Lines of code](https://img.shields.io/tokei/lines/github/dl6nm/version-helper)
-![GitHub](https://img.shields.io/github/license/dl6nm/version-helper)
+[![main](https://github.com/dl6nm/version-helper/actions/workflows/workflow.yml/badge.svg)](https://github.com/dl6nm/version-helper/actions/workflows/workflow.yml)
+[![Lines of code](https://img.shields.io/tokei/lines/github/dl6nm/version-helper)][version-helper-github]
+[![GitHub](https://img.shields.io/github/license/dl6nm/version-helper)](https://github.com/dl6nm/version-helper/blob/main/LICENSE.md)
 
     from version_helper import Version
-
-    # Parse output from `git describe --tag` and 
-    # return a semantic versioning compatible `Version` object
     v = Version.get_from_git_describe()
-
-    # Output core version string including major, minor and patch
-    print(v.core)
-
-    # Output full Semantic Version string including core, prerelease and build metadata
-    print(v.full)
+    print(v.core)  # major.minor.patch
+    print(v.full)  # major.minor.patch[-prerelease][+build]
 
 ## Table of contents
 
@@ -37,8 +30,6 @@ _This package is still under development. Code may change frequently._
 ## Installing `version-helper`
 
     pip install version-helper
-
-Code example see at the top of this page.
 
 ## Usage
 
@@ -75,3 +66,8 @@ All notable changes to this project will be documented in the [CHANGELOG.md](CHA
 - [git-describe](https://git-scm.com/docs/git-describe)
 - [Poetry](https://python-poetry.org/)
 - [Semantic Versioning](https://semver.org/)
+
+
+
+[version-helper-github]: https://github.com/dl6nm/version-helper/
+[version-helper-pypi]: https://pypi.org/project/version-helper/
