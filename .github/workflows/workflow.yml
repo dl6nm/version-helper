@@ -1,4 +1,4 @@
-name: Codecov Workflow
+name: main
 
 on: [push]
 
