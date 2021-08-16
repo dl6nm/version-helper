@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "version-helper"
-version = "0.2.0"
-description = "Helpers for a better version management in python projects"
+version = "0.2.1"
+description = "Package for a better version management in python projects"
 authors = ["DL6NM <mail@dl6nm.de>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/dl6nm/version-helper"
 repository = "https://github.com/dl6nm/version-helper"
-keywords = ["git", "describe", "tags", "version", "Semantic Versioning"]
+keywords = ["git", "describe", "tags", "version", "SemVer"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: MacOS",

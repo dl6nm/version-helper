@@ -8,6 +8,21 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
+### [0.2.1] (2021-08-16)
+
+#### Changed
+
+- Adapt GitHub action (workflow) and test setup
+- Clean-up [README.md](README.md)
+
+#### Fixed
+
+- Fix badge links in README.md
+
+#### Maintenance
+
+- Update pyproject.toml
+
 ### [0.2.0] (2021-08-13)
 
 #### Added
@@ -91,6 +106,7 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.2.1]: https://github.com/dl6nm/version-helper/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.2.0
 [0.2.0-beta.0]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.1...0.2.0-beta.0
 [0.2.0-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.0...0.2.0-alpha.1
