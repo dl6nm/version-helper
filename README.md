@@ -12,16 +12,9 @@ _This package is still under development. Code may change frequently._
 [![GitHub](https://img.shields.io/github/license/dl6nm/version-helper)](https://github.com/dl6nm/version-helper/blob/main/LICENSE.md)
 
     from version_helper import Version
-
-    # Parse output from `git describe --tag` and 
-    # return a semantic versioning compatible `Version` object
     v = Version.get_from_git_describe()
-
-    # Output core version string including major, minor and patch
-    print(v.core)
-
-    # Output full Semantic Version string including core, prerelease and build metadata
-    print(v.full)
+    print(v.core)  # major.minor.patch
+    print(v.full)  # major.minor.patch[-prerelease][+build]
 
 ## Table of contents
 
