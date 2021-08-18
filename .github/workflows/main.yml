@@ -1,11 +1,12 @@
 name: main
 
-on:
-  push:
-    branches:
-      - main
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+*'
+on: [push]
+#on:
+#  push:
+#    branches:
+#      - main
+#    tags:
+#      - '[0-9]+.[0-9]+.[0-9]+*'
 
 env:
   PYTEST_ADDOPTS: "--color=yes"
