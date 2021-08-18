@@ -20,12 +20,18 @@ _This package is still under development. Code may change frequently._
 
 - [Version helper](#version-helper)
   - [Table of contents](#table-of-contents)
+  - [Requirements](#requirements)
   - [Installing `version-helper`](#installing-version-helper)
   - [Usage](#usage)
     - [Reading version from a file](#reading-version-from-a-file)
     - [Writing version to a file](#writing-version-to-a-file)
   - [Changelog](#changelog)
   - [References](#references)
+
+## Requirements
+
+- [Python][python] 3.8+
+- [Git][git], if you'd need to receive a version string from `git describe`
 
 ## Installing `version-helper`
 
@@ -68,6 +74,9 @@ All notable changes to this project will be documented in the [CHANGELOG.md](CHA
 - [Semantic Versioning](https://semver.org/)
 
 
+
+[git]: https://git-scm.com/
+[python]: https://www.python.org/
 
 [version-helper-github]: https://github.com/dl6nm/version-helper/
 [version-helper-pypi]: https://pypi.org/project/version-helper/
