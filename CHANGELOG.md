@@ -8,6 +8,22 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
+### [0.2.2-alpha.0] (2021-08-18)
+
+#### Added
+
+- Add requirements to README.md
+
+#### Changed
+
+- Change minimal python version to 3.7
+- Adapt PyPI classifiers
+- Adapt GitHub workflow
+
+#### Maintenance
+
+- Refactor GitHub workflow to run only on the `main` branch
+
 ### [0.2.1] (2021-08-16)
 
 #### Changed
@@ -106,6 +122,7 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.2.2-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2-alpha.0
 [0.2.1]: https://github.com/dl6nm/version-helper/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.2.0
 [0.2.0-beta.0]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.1...0.2.0-beta.0
@@ -117,7 +134,7 @@ _All releases will be published to [PyPI]._
 [0.1.0]: https://github.com/dl6nm/version-helper/compare/0.0.1...0.1.0
 [0.0.1]: https://github.com/dl6nm/version-helper/releases/tag/0.0.1
 
-[releases]: https://github.com/dl6nm/version-helper/
+[releases]: https://github.com/dl6nm/version-helper/releases
 [pypi]: https://pypi.org/project/version-helper/
 
 [Keep a Changelog]: https://keepachangelog.com/en/1.0.0/
