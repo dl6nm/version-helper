@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
+### [0.2.2-alpha.2] (2021-08-18)
+
 ### [0.2.2-alpha.1] (2021-08-18)
 
 #### Changed
@@ -128,6 +130,7 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.2.2-alpha.2]: https://github.com/dl6nm/version-helper/compare/0.2.2-alpha.1...0.2.2-alpha.2
 [0.2.2-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.2-alpha.0...0.2.2-alpha.1
 [0.2.2-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2-alpha.0
 [0.2.1]: https://github.com/dl6nm/version-helper/compare/0.2.0...0.2.1
