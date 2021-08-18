@@ -13,7 +13,7 @@ def test_call_process():
     proc = Git._call_process(['git', '--version'])
     assert isinstance(proc, CompletedProcess)
     assert proc.stdout.startswith(b'git version')
-    assert proc.stderr is b''
+    assert proc.stderr == b''
 
 
 def test_call_process_git_exec_path(git_exec_path_parameters):
