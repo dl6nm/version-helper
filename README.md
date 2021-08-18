@@ -30,7 +30,7 @@ _This package is still under development. Code may change frequently._
 
 ## Requirements
 
-- [Python][python] 3.8+
+- [Python][python] 3.6+
 - [Git][git], if you'd need to receive a version string from `git describe`
 
 ## Installing `version-helper`
