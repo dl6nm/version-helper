@@ -14,7 +14,12 @@ class Git:
 
         :return: A CompletedProcess with captured output (stdout and stderr)
         """
-        return subprocess.run(*args, **kwargs, capture_output=True)
+        return subprocess.run(
+            *args,
+            **kwargs,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
 
     @classmethod
     def exec_path(cls) -> Path:
