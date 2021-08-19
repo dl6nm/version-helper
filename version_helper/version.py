@@ -40,7 +40,7 @@ class Version:
         """Parse a version string into it's individual Semantic Versioning parts
 
         :param string: A Semantic Versioning string
-        :param is_from_git_describe: Wether or not the version string is from `git describe`
+        :param is_from_git_describe: Whether or not the version string is from `git describe`
         :return: A `Version` class object
         """
         pattern = SEMVER_PATTERN
