@@ -8,7 +8,32 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
-### [0.2.2-alpha.2] (2021-08-18)
+### [0.2.2-alpha.2] (2021-08-19)
+
+#### Added
+
+- Add additional information on the "g" prefix at the front of git describes has suffix (#11)
+- Add wheel badge to README.md
+
+#### Changed
+
+- Replace apostrophes in (error) messages with normal quotes (#14)
+- Correct spelling in docstring
+- Update main workflow badge in README.md
+- Update GitHub action for setting up poetry
+
+#### Fixed
+
+- Fix bug where an error was raised on only core version having a "-dirty" flag (#13)
+- Fix error on asserting stderr
+
+#### Maintenance
+
+- Build and test on every push
+
+#### Tests
+
+- Add test for a dirty repository having no commits after a tag, only changed files (#13)
 
 ### [0.2.2-alpha.1] (2021-08-18)
 
