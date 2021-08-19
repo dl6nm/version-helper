@@ -71,7 +71,7 @@ class Version:
                     version_dict.setdefault('prerelease', version_string)
 
         if not all(k in version_dict for k in ['major', 'minor', 'patch']):
-            raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
+            raise ValueError(f'"{string}" is not valid to Semantic Versioning Specification')
 
         return Version(
             major=int(version_dict.get('major')),
