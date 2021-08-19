@@ -4,7 +4,9 @@ import re
 from version_helper import Git
 
 SEMVER_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>[\w\d\.-]+))?(?:\+(?P<build>[\w\d\.-]+))?)?$'
-GIT_DESCRIBE_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>(?:[\w\d\-]+\.?)+)(?=\-(?:\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?)$))?(?:\-(?P<build>\d+\-[\w\d]{8}(?:\-[\d\w\-]+)?))?$'
+
+GIT_DESCRIBE_CORE_PATTERN = r'^(?P<core>(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*)))(?:\.(?P<patch>0|(?:[1-9]\d*))))'
+GIT_DESCRIBE_BUILD_PATTERN = r'\-(?P<build>(?:\d+\-g[\w\d]{7,})?(?:\-)?(?:dirty)?)$'
 
 
 class Version:
@@ -43,26 +45,41 @@ class Version:
         :param is_from_git_describe: Whether or not the version string is from `git describe`
         :return: A `Version` class object
         """
-        pattern = SEMVER_PATTERN
-        if is_from_git_describe:
-            pattern = GIT_DESCRIBE_PATTERN
+        version_dict = {}
 
-        match = None
-        if string:
-            match = re.fullmatch(pattern, string.strip())
+        # parse SemVer string
+        if string and not is_from_git_describe:
+            semver = re.fullmatch(SEMVER_PATTERN, string.strip())
+            if semver:
+                version_dict = semver.groupdict()
 
-        if match:
-            match_dict = match.groupdict()
+        # parse git describe string
+        if string and is_from_git_describe:
+            version_string = string.strip()
+            core = re.search(GIT_DESCRIBE_CORE_PATTERN, version_string)
+            build = re.search(GIT_DESCRIBE_BUILD_PATTERN, version_string)
 
-            return Version(
-                major=int(match_dict.get('major')),
-                minor=int(match_dict.get('minor')),
-                patch=int(match_dict.get('patch')),
-                prerelease=match_dict.get('prerelease'),
-                build=match_dict.get('build'),
-            )
-        else:
+            if core:
+                version_dict.update(core.groupdict())
+                version_string = version_string.replace(f'{version_dict.get("core")}', '').strip('-')
+
+                if build:
+                    version_dict.update(build.groupdict())
+                    version_string = version_string.replace(f'{version_dict.get("build")}', '').strip('-')
+
+                if version_string:
+                    version_dict.setdefault('prerelease', version_string)
+
+        if not all(k in version_dict for k in ['major', 'minor', 'patch']):
             raise ValueError('`version_string` is not valid to Semantic Versioning Specification')
+
+        return Version(
+            major=int(version_dict.get('major')),
+            minor=int(version_dict.get('minor')),
+            patch=int(version_dict.get('patch')),
+            prerelease=version_dict.get('prerelease'),
+            build=version_dict.get('build'),
+        )
 
     @classmethod
     def get_from_git_describe(cls, dirty=False) -> 'Version':
