@@ -115,6 +115,21 @@ def git_exec_path_parameters(request, mock_subprocess):
             'expected_semver': '0.0.1-alpha.1+31-gdc27049',
             'expected_version': Version(major=0, minor=0, patch=1, prerelease='alpha.1', build='31-gdc27049'),
         },
+        {
+            'args': {
+                'dirty': True,
+                'always': False
+            },
+            'process': CompletedProcess(
+                args=['git', 'describe', '--tags'],
+                returncode=0,
+                stdout=r'0.0.1-alpha.1-31-gdc27049-dirty',
+                stderr=r'',
+            ),
+            'expected': '0.0.1-alpha.1-31-gdc27049-dirty',
+            'expected_semver': '0.0.1-alpha.1+31-gdc27049-dirty',
+            'expected_version': Version(major=0, minor=0, patch=1, prerelease='alpha.1', build='31-gdc27049-dirty'),
+        },
 
         {
             'args': {
@@ -242,6 +257,7 @@ def git_exec_path_parameters(request, mock_subprocess):
         'ok: default tag',
         'ok: default+commits',
         'ok: default+pre+build',
+        'ok: default+pre+build-dirty',
 
         'ok: dirty',
         'ok: +build-dirty',
