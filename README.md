@@ -6,6 +6,7 @@ _This package is still under development. Code may change frequently._
 
 [![PyPI](https://img.shields.io/pypi/v/version-helper)][version-helper-pypi]
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/version-helper)][version-helper-pypi]
+[![PyPI - Wheel](https://img.shields.io/pypi/wheel/version-helper)][version-helper-pypi]
 [![codecov](https://codecov.io/gh/dl6nm/version-helper/branch/main/graph/badge.svg?token=WNOMQ28E5J)](https://codecov.io/gh/dl6nm/version-helper)
 [![main](https://github.com/dl6nm/version-helper/actions/workflows/main.yml/badge.svg)](https://github.com/dl6nm/version-helper/actions/workflows/workflow.yml)
 [![Lines of code](https://img.shields.io/tokei/lines/github/dl6nm/version-helper)][version-helper-github]
