@@ -41,7 +41,8 @@ class Git:
 
         If the tag points to the commit, then only the tag is shown. Otherwise,
         it suffixes the tag name with the number of additional commits on top
-        of the tagged object and the abbreviated object name of the most recent commit.
+        of the tagged object and the abbreviated object name (hash)
+        of the most recent commit which is prefixed with "g" that stands for "git".
 
         :param dirty: Append '-dirty', if the working tree has local modifications
         :param always: Show uniquely abbreviated commit object as fallback

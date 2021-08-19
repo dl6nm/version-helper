@@ -84,7 +84,7 @@ def test_version_parser_value_error(version_string):
     WHEN the string is parsed into a semantic version
     THEN a ValueError will be raised
     """
-    with pytest.raises(ValueError, match='`version_string` is not valid to Semantic Versioning Specification'):
+    with pytest.raises(ValueError, match=f'"{version_string}" is not valid to Semantic Versioning Specification'):
         Version.parse(version_string)
 
 
@@ -169,10 +169,11 @@ def test_version_set(major, minor, patch, prerelease, build, expected_semver, ex
 def test_get_version_from_git_describe(git_describe_parameters):
     """Test for getting a `Version` object from collecting/parsing the git describe output"""
     args = git_describe_parameters.get('args')
+    version_string: Version = git_describe_parameters.get('expected')
     expected_version: Version = git_describe_parameters.get('expected_version')
 
     if expected_version is None:
-        with pytest.raises(ValueError, match='`version_string` is not valid to Semantic Versioning Specification'):
+        with pytest.raises(ValueError, match=f'"{version_string}" is not valid to Semantic Versioning Specification'):
             Version.get_from_git_describe(
                 dirty=args.get('dirty'),
             )

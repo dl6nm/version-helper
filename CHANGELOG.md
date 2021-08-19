@@ -8,6 +8,66 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases will be published to [PyPI]._
 
+### [0.2.2] (2021-08-19)
+
+#### Added
+
+- Add additional information on the "g" prefix at the front of git describes has suffix (closes #11)
+- Add requirements to README.md
+- Add PyPI wheel badge to README.md
+
+#### Changed
+
+- Change minimal python version to 3.6
+- Change stdout and stderr of the subprocess to be backwards compatible with Python 3.6
+- Replace apostrophes in (error) messages with normal quotes (closes #14)
+- Correct spelling in docstring
+- Update main workflow badge in README.md
+
+#### Fixed
+
+- Fix bug where an error was raised on only core version having a "-dirty" flag (closes #13)
+- Fix error on asserting stderr
+
+#### Maintenance
+
+- Adapt PyPI classifiers and GitHub workflow
+- Update GitHub action for setting up poetry
+- Build and test on every push
+
+#### Tests
+
+- Change test to check the output of the git tools _call_process method
+- Add test for a dirty repository having no commits after a tag, only changed files (#13)
+- Add another test with "-dirty" flag
+
+### [0.2.2-alpha.2] (2021-08-19)
+
+#### Added
+
+- Add additional information on the "g" prefix at the front of git describes has suffix (#11)
+- Add wheel badge to README.md
+
+#### Changed
+
+- Replace apostrophes in (error) messages with normal quotes (#14)
+- Correct spelling in docstring
+- Update main workflow badge in README.md
+- Update GitHub action for setting up poetry
+
+#### Fixed
+
+- Fix bug where an error was raised on only core version having a "-dirty" flag (#13)
+- Fix error on asserting stderr
+
+#### Maintenance
+
+- Build and test on every push
+
+#### Tests
+
+- Add test for a dirty repository having no commits after a tag, only changed files (#13)
+
 ### [0.2.2-alpha.1] (2021-08-18)
 
 #### Changed
@@ -128,6 +188,7 @@ _All releases will be published to [PyPI]._
 
 
 
+[0.2.2]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2
 [0.2.2-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.2-alpha.0...0.2.2-alpha.1
 [0.2.2-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2-alpha.0
 [0.2.1]: https://github.com/dl6nm/version-helper/compare/0.2.0...0.2.1

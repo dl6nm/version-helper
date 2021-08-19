@@ -1,11 +1,12 @@
 name: main
 
-on:
-  push:
-    branches:
-      - main
-    tags:
-      - '[0-9]+.[0-9]+.[0-9]+*'
+on: [push]
+#on:
+#  push:
+#    branches:
+#      - main
+#    tags:
+#      - '[0-9]+.[0-9]+.[0-9]+*'
 
 env:
   PYTEST_ADDOPTS: "--color=yes"
@@ -34,7 +35,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Setup Poetry
-        uses: abatilo/actions-poetry@v2.1.0
+        uses: abatilo/actions-poetry@master
 
       - name: Install dependencies
         run: |
