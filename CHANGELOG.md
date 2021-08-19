@@ -41,55 +41,6 @@ _All releases will be published to [PyPI]._
 - Add test for a dirty repository having no commits after a tag, only changed files (#13)
 - Add another test with "-dirty" flag
 
-### [0.2.2-alpha.2] (2021-08-19)
-
-#### Added
-
-- Add additional information on the "g" prefix at the front of git describes has suffix (#11)
-- Add wheel badge to README.md
-
-#### Changed
-
-- Replace apostrophes in (error) messages with normal quotes (#14)
-- Correct spelling in docstring
-- Update main workflow badge in README.md
-- Update GitHub action for setting up poetry
-
-#### Fixed
-
-- Fix bug where an error was raised on only core version having a "-dirty" flag (#13)
-- Fix error on asserting stderr
-
-#### Maintenance
-
-- Build and test on every push
-
-#### Tests
-
-- Add test for a dirty repository having no commits after a tag, only changed files (#13)
-
-### [0.2.2-alpha.1] (2021-08-18)
-
-#### Changed
-
-- Change stdout and stderr of the subprocess to be backwards compatible with Python 3.6
-
-### [0.2.2-alpha.0] (2021-08-18)
-
-#### Added
-
-- Add requirements to README.md
-
-#### Changed
-
-- Change minimal python version to 3.7
-- Adapt PyPI classifiers
-- Adapt GitHub workflow
-
-#### Maintenance
-
-- Refactor GitHub workflow to run only on the `main` branch
-
 ### [0.2.1] (2021-08-16)
 
 #### Changed
@@ -118,28 +69,6 @@ _All releases will be published to [PyPI]._
 - Add GitHub workflows for build, release and publish this python package `version-helper`
 - Add macOS and Ubuntu to the test matrix
 - Add missing tests for the `Version` class dunder methods `__str__` and `__repr__`
-
-### [0.2.0-beta.0] (2021-08-13)
-
-- Add method `write_to_file()` to `Version` class for writing a version string to a file
-
-### [0.2.0-alpha.1] (2021-08-12)
-
-#### Added
-
-- Add macOS and Ubuntu to the test matrix
-- Add missing tests for the `Version` class dunder methods `__str__` and `__repr__`
-- Add method `read_from_file()` to `Version` class for reading a version string from a file
-
-#### Changed
-
-- Add me (dl6nm) as owner explicitly for creating a new release
-
-### [0.2.0-alpha.0] (2021-08-10)
-
-#### Fixed
-
-- Fix problem on setting the PyPI token for publishing the package with Poetry
 
 ### [0.1.3] (2021-08-10)
 
@@ -189,13 +118,8 @@ _All releases will be published to [PyPI]._
 
 
 [0.2.2]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2
-[0.2.2-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.2-alpha.0...0.2.2-alpha.1
-[0.2.2-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2-alpha.0
 [0.2.1]: https://github.com/dl6nm/version-helper/compare/0.2.0...0.2.1
 [0.2.0]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.2.0
-[0.2.0-beta.0]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.1...0.2.0-beta.0
-[0.2.0-alpha.1]: https://github.com/dl6nm/version-helper/compare/0.2.0-alpha.0...0.2.0-alpha.1
-[0.2.0-alpha.0]: https://github.com/dl6nm/version-helper/compare/0.1.3...0.2.0-alpha.0
 [0.1.3]: https://github.com/dl6nm/version-helper/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/dl6nm/version-helper/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/dl6nm/version-helper/compare/0.1.0...0.1.1
