@@ -20,14 +20,14 @@ _This package is still under development. Code may change frequently._
 ## Table of contents
 
 - [Version helper](#version-helper)
-  - [Table of contents](#table-of-contents)
-  - [Requirements](#requirements)
-  - [Installing `version-helper`](#installing-version-helper)
-  - [Usage](#usage)
-    - [Reading version from a file](#reading-version-from-a-file)
-    - [Writing version to a file](#writing-version-to-a-file)
-  - [Changelog](#changelog)
-  - [References](#references)
+    - [Table of contents](#table-of-contents)
+    - [Requirements](#requirements)
+    - [Installing `version-helper`](#installing-version-helper)
+    - [Usage](#usage)
+        - [Reading version from a file](#reading-version-from-a-file)
+        - [Writing version to a file](#writing-version-to-a-file)
+    - [Changelog](#changelog)
+    - [References](#references)
 
 ## Requirements
 

@@ -116,8 +116,8 @@ _All releases are published to [PyPI]._
 
 - Add tests and fixtures for `Git` class and its methods
 - Implement `Git` class with method...
-  - `exec_path()` for getting the installation path of git
-  - `describe()` to get a human-readable string containing the most recent tag
+    - `exec_path()` for getting the installation path of git
+    - `describe()` to get a human-readable string containing the most recent tag
 - Implement `Version.get_from_git_describe()` to get a `Version` object from a `git describe` call
 - Add code examples to [README.md](README.md)
 
@@ -127,8 +127,8 @@ _All releases are published to [PyPI]._
 
 - Add tests and fixtures for `Version` class and its methods
 - Implement `Version` class with method...
-  - `parser()` for converting a string into a [Semantic Versioning] like `Version` object
-  - `set()` for setting or changing a version explicitly
+    - `parser()` for converting a string into a [Semantic Versioning] like `Version` object
+    - `set()` for setting or changing a version explicitly
 - Add [README.md](README.md)
 
 
