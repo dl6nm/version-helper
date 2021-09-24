@@ -190,7 +190,7 @@ def test_get_version_from_package_metadata():
     """Test for getting a `Version` object from a packages metadata"""
     version: Version = Version.get_from_package_metadata()
     pkg = pkg_resources.get_distribution('version_helper')
-    expected_version: Version = Version.parse(pkg.version)
+    expected_version: Version = Version.parse(pkg.version, True)
     assert isinstance(version, Version)
     assert expected_version.core == version.core
     assert expected_version.full == version.full
