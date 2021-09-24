@@ -1,3 +1,5 @@
+import pkg_resources
+
 import pytest
 
 from version_helper import Version
@@ -182,3 +184,13 @@ def test_get_version_from_git_describe(git_describe_parameters):
             dirty=args.get('dirty'),
         )
         assert expected_version.full == version.full
+
+
+def test_get_version_from_package_metadata():
+    """Test for getting a `Version` object from a packages metadata"""
+    version: Version = Version.get_from_package_metadata()
+    pkg = pkg_resources.get_distribution('version_helper')
+    expected_version: Version = Version.parse(pkg.version)
+    assert isinstance(version, Version)
+    assert expected_version.core == version.core
+    assert expected_version.full == version.full

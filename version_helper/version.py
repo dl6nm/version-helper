@@ -1,4 +1,5 @@
 import pathlib
+import pkg_resources
 import re
 
 from version_helper import Git
@@ -90,6 +91,16 @@ class Version:
         """
         description = Git.describe(dirty=dirty)
         return cls.parse(description, True)
+
+    @classmethod
+    def get_from_package_metadata(cls, distribution_name=__package__) -> 'Version':
+        """Get a semantic version from packages metadata
+
+        :param distribution_name: The name of the distribution package to query.
+        :return: A `Version` class object
+        """
+        pkg = pkg_resources.get_distribution(__package__)
+        return cls.parse(pkg.version)
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, build: str = None):
