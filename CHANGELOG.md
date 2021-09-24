@@ -8,6 +8,7 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 #### Added
 
+- Add method `get_from_package_metadata()` to `Version` 
 - Add unreleased changes section to CHANGELOG.md
 
 #### Changed
