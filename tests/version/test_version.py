@@ -182,3 +182,12 @@ def test_get_version_from_git_describe(git_describe_parameters):
             dirty=args.get('dirty'),
         )
         assert expected_version.full == version.full
+
+
+def test_get_version_from_package_metadata():
+    """Test for getting a `Version` object from a packages metadata"""
+    expected_version: Version = Version.get_from_git_describe()
+
+    version = Version.get_from_package_metadata()
+    assert isinstance(version, Version)
+    assert expected_version.core == version.core
