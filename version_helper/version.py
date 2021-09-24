@@ -100,7 +100,7 @@ class Version:
         :return: A `Version` class object
         """
         pkg = pkg_resources.get_distribution(__package__)
-        return cls.parse(pkg.version)
+        return cls.parse(pkg.version, True)
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, build: str = None):
