@@ -1,6 +1,8 @@
 import pathlib
 import re
 
+from importlib.metadata import version
+
 from version_helper import Git
 
 SEMVER_PATTERN = r'^(?P<major>0|(?:[1-9]\d*))(?:\.(?P<minor>0|(?:[1-9]\d*))(?:\.(?P<patch>0|(?:[1-9]\d*)))(?:\-(?P<prerelease>[\w\d\.-]+))?(?:\+(?P<build>[\w\d\.-]+))?)?$'
@@ -90,6 +92,16 @@ class Version:
         """
         description = Git.describe(dirty=dirty)
         return cls.parse(description, True)
+
+    @classmethod
+    def get_from_package_metadata(cls, distribution_name=__package__) -> 'Version':
+        """Get a semantic version from packages metadata
+
+        :param distribution_name: The name of the distribution package to query.
+        :return: A `Version` class object
+        """
+        version_string = version(distribution_name)
+        return cls.parse(version_string)
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, build: str = None):
