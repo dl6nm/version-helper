@@ -1,7 +1,6 @@
 import pathlib
+import pkg_resources
 import re
-
-from importlib.metadata import version
 
 from version_helper import Git
 
@@ -100,8 +99,8 @@ class Version:
         :param distribution_name: The name of the distribution package to query.
         :return: A `Version` class object
         """
-        version_string = version(distribution_name)
-        return cls.parse(version_string)
+        pkg = pkg_resources.get_distribution(__package__)
+        return cls.parse(pkg.version)
 
     def set(self, major: int, minor: int, patch: int,
             prerelease: str = None, build: str = None):
