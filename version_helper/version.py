@@ -99,7 +99,7 @@ class Version:
         :param distribution_name: The name of the distribution package to query.
         :return: A `Version` class object
         """
-        pkg = pkg_resources.get_distribution(__package__)
+        pkg = pkg_resources.get_distribution(distribution_name)
         return cls.parse(pkg.version, True)
 
     def set(self, major: int, minor: int, patch: int,

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "version-helper"
-version = "0.3.0"
+version = "0.3.1"
 description = "Package for a better version management in python projects"
 authors = ["DL6NM <mail@dl6nm.de>"]
 license = "MIT"

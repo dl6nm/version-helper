@@ -17,6 +17,12 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 _All releases are published to [PyPI]._
 
+### [0.3.1] (2021-09-27)
+
+#### Fixed
+
+- Fix bug where an external `distribution_name` was not respected
+
 ### [0.3.0] (2021-09-24)
 
 #### Added
@@ -138,6 +144,7 @@ _All releases are published to [PyPI]._
 
 
 [unreleased]: https://github.com/dl6nm/version-helper/compare/main...dev
+[0.3.1]: https://github.com/dl6nm/version-helper/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/dl6nm/version-helper/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/dl6nm/version-helper/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/dl6nm/version-helper/compare/0.2.0...0.2.1
